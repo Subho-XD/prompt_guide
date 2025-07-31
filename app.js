@@ -1,752 +1,795 @@
-// Clean PromptCraft Portal - JavaScript (Fixed Navigation)
+// vicky.ai - Internal Prompt Engineering Platform
 let currentSection = 'home';
 
-// AI Tools Data
-const AI_TOOLS_DATA = {
-    "Text AI": [
-        {"name": "ChatGPT-4", "description": "Most versatile conversational AI"},
-        {"name": "Claude 3.5", "description": "Advanced reasoning and analysis"},
-        {"name": "Gemini Pro", "description": "Google's multimodal AI assistant"},
-        {"name": "Perplexity", "description": "AI-powered search and research"},
-        {"name": "Jasper", "description": "AI copywriting and content creation"}
-    ],
-    "Image AI": [
-        {"name": "Midjourney", "description": "Premium AI art generation"},
-        {"name": "DALL-E 3", "description": "OpenAI's advanced image creator"},
-        {"name": "Stable Diffusion", "description": "Open-source image generation"},
-        {"name": "Flux", "description": "High-quality realistic images"},
-        {"name": "Firefly", "description": "Adobe's creative AI suite"}
-    ],
-    "Code AI": [
-        {"name": "GitHub Copilot", "description": "AI pair programming assistant"},
-        {"name": "Cursor", "description": "AI-powered code editor"},
-        {"name": "Codeium", "description": "Free AI coding assistant"},
-        {"name": "Tabnine", "description": "AI code completions"},
-        {"name": "Replit Ghostwriter", "description": "Cloud-based AI coding"}
-    ],
-    "Audio AI": [
-        {"name": "ElevenLabs", "description": "Realistic voice synthesis"},
-        {"name": "Murf", "description": "AI voiceover generator"},
-        {"name": "Descript", "description": "AI audio and video editing"},
-        {"name": "Speechify", "description": "Text-to-speech platform"},
-        {"name": "Replica Studios", "description": "AI voice actors library"}
-    ],
-    "Video AI": [
-        {"name": "Runway", "description": "AI video generation and editing"},
-        {"name": "Pika Labs", "description": "Text-to-video generation"},
-        {"name": "Synthesia", "description": "AI avatar video creation"},
-        {"name": "Luma Dream Machine", "description": "High-quality video generation"},
-        {"name": "InVideo", "description": "AI-powered video editing"}
-    ]
+// AI Tools Data (25 tools as specified)
+const aiToolsData = [
+  // Text Generation
+  {"name": "ChatGPT", "category": "Text Generation", "url": "https://chat.openai.com", "rating": 4.8, "description": "Advanced conversational AI for text generation and analysis"},
+  {"name": "Claude", "category": "Text Generation", "url": "https://claude.ai", "rating": 4.7, "description": "Anthropic's AI assistant for complex reasoning and writing"},
+  {"name": "Gemini", "category": "Text Generation", "url": "https://gemini.google.com", "rating": 4.6, "description": "Google's multimodal AI with advanced text capabilities"},
+  {"name": "Jasper", "category": "Text Generation", "url": "https://jasper.ai", "rating": 4.3, "description": "AI writing assistant for marketing and content creation"},
+  {"name": "Copy.ai", "category": "Text Generation", "url": "https://copy.ai", "rating": 4.2, "description": "AI-powered copywriting and content generation tool"},
+
+  // Image Generation
+  {"name": "Midjourney", "category": "Image Generation", "url": "https://midjourney.com", "rating": 4.9, "description": "High-quality AI image generation with artistic styles"},
+  {"name": "DALL-E 3", "category": "Image Generation", "url": "https://openai.com/dall-e-3", "rating": 4.7, "description": "OpenAI's advanced text-to-image generator"},
+  {"name": "Stable Diffusion", "category": "Image Generation", "url": "https://stability.ai", "rating": 4.6, "description": "Open-source AI image generation model"},
+  {"name": "Flux", "category": "Image Generation", "url": "https://flux.ai", "rating": 4.5, "description": "Fast and efficient AI image generation"},
+  {"name": "Leonardo AI", "category": "Image Generation", "url": "https://leonardo.ai", "rating": 4.4, "description": "AI art generator with fine-tuned control"},
+
+  // Video Generation
+  {"name": "Runway ML", "category": "Video Generation", "url": "https://runwayml.com", "rating": 4.6, "description": "AI video editing and generation platform"},
+  {"name": "Pika Labs", "category": "Video Generation", "url": "https://pika.art", "rating": 4.4, "description": "Text-to-video AI generation tool"},
+  {"name": "Synthesia", "category": "Video Generation", "url": "https://synthesia.io", "rating": 4.3, "description": "AI avatar video creation platform"},
+  {"name": "D-ID", "category": "Video Generation", "url": "https://d-id.com", "rating": 4.2, "description": "AI-powered talking head video generation"},
+  {"name": "HeyGen", "category": "Video Generation", "url": "https://heygen.com", "rating": 4.1, "description": "AI video generation with realistic avatars"},
+
+  // Code Generation
+  {"name": "GitHub Copilot", "category": "Code Generation", "url": "https://github.com/features/copilot", "rating": 4.8, "description": "AI pair programmer for code completion"},
+  {"name": "Cursor", "category": "Code Generation", "url": "https://cursor.sh", "rating": 4.6, "description": "AI-powered code editor and assistant"},
+  {"name": "Tabnine", "category": "Code Generation", "url": "https://tabnine.com", "rating": 4.4, "description": "AI code completion for multiple IDEs"},
+  {"name": "CodeT5", "category": "Code Generation", "url": "https://huggingface.co/Salesforce/codet5-large", "rating": 4.2, "description": "AI model for code understanding and generation"},
+  {"name": "Codex", "category": "Code Generation", "url": "https://openai.com/blog/openai-codex", "rating": 4.1, "description": "OpenAI's code generation model"},
+
+  // Audio Generation
+  {"name": "ElevenLabs", "category": "Audio Generation", "url": "https://elevenlabs.io", "rating": 4.7, "description": "AI voice cloning and text-to-speech"},
+  {"name": "Murf", "category": "Audio Generation", "url": "https://murf.ai", "rating": 4.4, "description": "AI voiceover generation platform"},
+  {"name": "Speechify", "category": "Audio Generation", "url": "https://speechify.com", "rating": 4.3, "description": "AI text-to-speech reading assistant"},
+  {"name": "Descript", "category": "Audio Generation", "url": "https://descript.com", "rating": 4.2, "description": "AI-powered audio and video editing"},
+  {"name": "Resemble", "category": "Audio Generation", "url": "https://resemble.ai", "rating": 4.1, "description": "AI voice generator and cloning platform"}
+];
+
+// Expert prompts organized by category (18 prompts)
+const expertPrompts = {
+  "Schedules & Timelines": [
+    "Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.",
+    "Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.",
+    "Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarise in a table."
+  ],
+  "Communication": [
+    "Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).",
+    "Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.",
+    "Write a milestone update for executives: current status, wins, next steps, risks."
+  ],
+  "Resource Management": [
+    "Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.",
+    "Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.",
+    "Given this workload data [paste], highlight bottlenecks & suggest reallocation."
+  ],
+  "Budget Management": [
+    "Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.",
+    "Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.",
+    "Suggest 5 cost-saving ideas for a $X project; estimate savings."
+  ],
+  "Problem-Solving": [
+    "Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.",
+    "Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.",
+    "Generate three alternative solutions to [challenge] with pros/cons, recommend best."
+  ],
+  "Quality": [
+    "Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).",
+    "Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].",
+    "Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them."
+  ]
 };
 
-// Purpose-specific enhancements
-const PURPOSE_ENHANCEMENTS = {
-    "Image Generation": {
-        "enhancement": "Include detailed visual specifications: composition (rule of thirds, symmetrical, dynamic), lighting conditions (natural light, golden hour, studio lighting), camera settings (wide-angle lens, macro, portrait), color palette (vibrant, muted, monochromatic), mood (cinematic, dreamy, dramatic), artistic style (photorealistic, impressionist, digital art), and perspective (bird's eye, low angle, close-up)."
-    },
-    "Report Analysis": {
-        "enhancement": "Structure your analysis with: executive summary highlighting key findings, statistical analysis with specific metrics and KPIs, trend identification over time periods, actionable recommendations with implementation steps, and data visualization suggestions. Format as a comprehensive report with clear sections, bullet points for key insights, and tables for numerical data."
-    },
-    "Data Analysis": {
-        "enhancement": "Perform comprehensive data analysis including: descriptive statistics (mean, median, mode, standard deviation), correlation analysis with correlation matrix, trend analysis over specified time periods, outlier detection and handling, statistical significance testing, data visualization recommendations (charts, graphs, heatmaps), and actionable insights with business implications."
-    },
-    "Code Generation": {
-        "enhancement": "Generate well-documented, production-ready code with: comprehensive inline comments and docstrings, proper error handling with try-catch blocks, adherence to language-specific coding standards (PEP 8 for Python, ESLint for JavaScript), modular structure with reusable functions, unit tests for key functionality, and optimization for performance and readability."
-    },
-    "Content Creation": {
-        "enhancement": "Create audience-focused content with: clear target audience definition (demographics, expertise level, interests), appropriate tone and voice (professional, conversational, authoritative), engaging structure with compelling headlines and subheadings, call-to-action elements, SEO optimization with relevant keywords, readability optimization for the target audience, and platform-specific formatting requirements."
-    },
-    "Conversational AI": {
-        "enhancement": "Develop a conversational AI persona with: clear personality traits and expertise areas, consistent interaction style (helpful, professional, empathetic), response guidelines for different scenarios, context retention throughout conversations, natural conversation flow with appropriate transitions, clarifying question capabilities, and boundaries for scope and limitations."
-    },
-    "General Use": {
-        "enhancement": "Ensure comprehensive and actionable responses with clear structure, specific details, and practical implementation guidance."
-    }
-};
-
-// Initialize Application
-function initializeApp() {
-    console.log('🚀 PromptCraft Portal Initialized');
-    
-    // Setup all components
-    setupNavigation();
-    setupAITools();
-    setupPromptChecker();
-    setupPromptGenerator();
-    setupMobileNavigation();
-    setupCopyButtons();
-    
-    // Handle initial route after setup
-    setTimeout(() => {
-        handleInitialRoute();
-    }, 100);
+// Global navigation function to be used by onclick handlers
+window.navigateToSection = function(sectionId) {
+  console.log(`🔄 Navigating to section: ${sectionId}`);
+  currentSection = sectionId;
+  showSection(sectionId);
+  updateNavigationState(sectionId);
+  closeMobileMenu();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Navigation Setup - Fixed
+// Initialize application
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Initializing vicky.ai...');
+  
+  setupNavigation();
+  setupMobileNavigation();
+  populateAITools();
+  setupPromptChecker();
+  setupPromptGenerator();
+  setupImageUpload();
+  
+  // Show home section by default
+  showSection('home');
+  updateNavigationState('home');
+  
+  console.log('✅ vicky.ai initialized successfully');
+});
+
+// Navigation System
 function setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
+  console.log('🔧 Setting up navigation system...');
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
+  console.log(`Found ${navLinks.length} navigation links`);
+  
+  navLinks.forEach((link, index) => {
+    const targetSection = link.getAttribute('data-section');
+    console.log(`Setting up nav link ${index + 1}: ${targetSection}`);
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const targetSection = href.substring(1);
-                console.log('Navigating to:', targetSection);
-                navigateToSection(targetSection);
-            }
-        });
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log(`🔄 Navigation clicked: ${targetSection}`);
+      navigateToSection(targetSection);
     });
+  });
+  
+  console.log('✅ Navigation setup complete');
 }
 
-// Navigate to Section - Fixed
-function navigateToSection(sectionId) {
-    console.log('Navigating to section:', sectionId);
-    
-    // Validate section exists
-    const targetElement = document.getElementById(sectionId);
-    if (!targetElement) {
-        console.error('Section not found:', sectionId);
-        return;
-    }
-    
-    // Update navigation state
-    updateNavigation(sectionId);
-    
-    // Show target section, hide others
-    showSection(sectionId);
-    
-    // Update current section
-    currentSection = sectionId;
-    
-    // Update URL without triggering reload
-    history.pushState(null, null, `#${sectionId}`);
-    
-    // Close mobile menu
-    closeMobileMenu();
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    console.log('Navigation complete to:', sectionId);
-}
-
-// Update Navigation State
-function updateNavigation(activeSectionId) {
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href) {
-            const linkSection = href.substring(1);
-            if (linkSection === activeSectionId) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        }
-    });
-}
-
-// Show Section - Fixed
 function showSection(targetSectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        if (section.id === targetSectionId) {
-            section.classList.remove('hidden');
-            section.style.display = 'block';
-        } else {
-            section.classList.add('hidden');
-            section.style.display = 'none';
-        }
-    });
+  console.log(`👁️ Showing section: ${targetSectionId}`);
+  
+  // Hide all sections
+  const allSections = document.querySelectorAll('.section');
+  console.log(`Found ${allSections.length} sections to manage`);
+  
+  allSections.forEach((section, index) => {
+    section.classList.add('hidden');
+    section.style.display = 'none';
+    console.log(`Hidden section ${index + 1}: ${section.id}`);
+  });
+  
+  // Show target section
+  const targetSection = document.getElementById(targetSectionId);
+  if (targetSection) {
+    targetSection.classList.remove('hidden');
+    targetSection.style.display = 'block';
+    console.log(`✅ Section ${targetSectionId} is now visible`);
+  } else {
+    console.error(`❌ Section ${targetSectionId} not found!`);
+  }
 }
 
-// Handle Initial Route - Fixed
-function handleInitialRoute() {
-    const hash = window.location.hash.substring(1);
-    const targetSection = hash || 'home';
+function updateNavigationState(activeSectionId) {
+  console.log(`🎯 Updating nav state for: ${activeSectionId}`);
+  
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
+  
+  navLinks.forEach(link => {
+    const linkSection = link.getAttribute('data-section');
     
-    console.log('Initial route:', targetSection);
-    
-    // Validate section exists before navigating
-    if (document.getElementById(targetSection)) {
-        navigateToSection(targetSection);
+    if (linkSection === activeSectionId) {
+      link.classList.add('active');
+      console.log(`✅ Activated nav link: ${linkSection}`);
     } else {
-        console.log('Section not found, defaulting to home');
-        navigateToSection('home');
+      link.classList.remove('active');
     }
+  });
 }
 
-// Setup AI Tools
-function setupAITools() {
-    const toolsContainer = document.getElementById('tools-container');
-    if (!toolsContainer) {
-        console.log('Tools container not found');
-        return;
-    }
-    
-    toolsContainer.innerHTML = '';
-    
-    Object.entries(AI_TOOLS_DATA).forEach(([category, tools]) => {
-        const categorySection = createToolsCategory(category, tools);
-        toolsContainer.appendChild(categorySection);
-    });
-    
-    console.log('AI Tools setup complete');
-}
-
-// Create Tools Category
-function createToolsCategory(category, tools) {
-    const section = document.createElement('div');
-    section.className = 'tools-category';
-    
-    const title = document.createElement('h3');
-    title.textContent = category;
-    section.appendChild(title);
-    
-    const grid = document.createElement('div');
-    grid.className = 'tools-grid';
-    
-    tools.forEach(tool => {
-        const card = document.createElement('div');
-        card.className = 'tool-card';
-        card.innerHTML = `
-            <h4>${tool.name}</h4>
-            <p>${tool.description}</p>
-        `;
-        grid.appendChild(card);
-    });
-    
-    section.appendChild(grid);
-    return section;
-}
-
-// Setup Prompt Checker - Fixed
-function setupPromptChecker() {
-    const analyzeBtn = document.getElementById('analyze-btn');
-    const promptInput = document.getElementById('prompt-input');
-    const resultsSection = document.getElementById('analysis-results');
-    
-    if (!analyzeBtn || !promptInput || !resultsSection) {
-        console.log('Prompt checker elements not found');
-        return;
-    }
-    
-    analyzeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const promptText = promptInput.value.trim();
-        
-        if (!promptText) {
-            showNotification('Please enter a prompt to analyze', 'error');
-            return;
-        }
-        
-        console.log('Analyzing prompt:', promptText.substring(0, 50) + '...');
-        
-        // Show loading state
-        const originalHTML = analyzeBtn.innerHTML;
-        analyzeBtn.innerHTML = 'Analyzing...';
-        analyzeBtn.disabled = true;
-        
-        // Simulate analysis delay
-        setTimeout(() => {
-            const analysis = analyzePrompt(promptText);
-            displayAnalysisResults(analysis);
-            resultsSection.classList.remove('hidden');
-            resultsSection.style.display = 'block';
-            
-            // Reset button
-            analyzeBtn.innerHTML = originalHTML;
-            analyzeBtn.disabled = false;
-            
-            // Scroll to results
-            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            console.log('Analysis complete');
-        }, 1500);
-    });
-    
-    console.log('Prompt checker setup complete');
-}
-
-// Analyze Prompt
-function analyzePrompt(text) {
-    const wordCount = text.split(/\s+/).length;
-    const sentenceCount = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-    
-    // Check for key elements
-    const hasRole = /(?:act as|you are|assume the role)/i.test(text);
-    const hasContext = /(?:context|background|scenario|situation)/i.test(text);
-    const hasFormat = /(?:format|structure|table|list|bullet|json)/i.test(text);
-    const hasSpecificity = /(?:specific|detailed|exactly|precisely)/i.test(text);
-    
-    // Check for vague terms
-    const vagueTerms = ['something', 'anything', 'stuff', 'things', 'better', 'improve', 'good'];
-    const hasVagueTerms = vagueTerms.some(term => text.toLowerCase().includes(term));
-    
-    let score = 0;
-    const feedback = [];
-    
-    // Word count analysis
-    if (wordCount >= 20 && wordCount <= 150) {
-        score += 2;
-        feedback.push({
-            type: 'positive',
-            title: '✅ Good Length',
-            message: `Prompt length (${wordCount} words) is within the optimal range for clear AI understanding.`
-        });
-    } else if (wordCount < 20) {
-        feedback.push({
-            type: 'negative',
-            title: '⚠️ Too Short',
-            message: 'Consider adding more context and specific requirements to improve results.'
-        });
-    } else {
-        feedback.push({
-            type: 'negative',
-            title: '⚠️ Too Long',
-            message: 'Consider breaking this into smaller, focused prompts for better results.'
-        });
-    }
-    
-    // Role definition
-    if (hasRole) {
-        score += 2;
-        feedback.push({
-            type: 'positive',
-            title: '🎯 Role Defined',
-            message: 'Good! You\'ve defined a specific role or expertise for the AI.'
-        });
-    } else {
-        feedback.push({
-            type: 'negative',
-            title: '❌ Missing Role',
-            message: 'Start with "Act as a [expert]" to give the AI a specific perspective.'
-        });
-    }
-    
-    // Context check
-    if (hasContext) {
-        score += 1;
-        feedback.push({
-            type: 'positive',
-            title: '📝 Context Provided',
-            message: 'Good context helps the AI understand the situation better.'
-        });
-    } else {
-        feedback.push({
-            type: 'neutral',
-            title: '💡 Add Context',
-            message: 'Consider adding background information or constraints for better results.'
-        });
-    }
-    
-    // Format specification
-    if (hasFormat) {
-        score += 1;
-        feedback.push({
-            type: 'positive',
-            title: '📋 Format Specified',
-            message: 'Great! You\'ve specified how you want the output formatted.'
-        });
-    } else {
-        feedback.push({
-            type: 'negative',
-            title: '❌ No Format Specified',
-            message: 'Specify the desired output format (list, table, paragraph, etc.).'
-        });
-    }
-    
-    // Specificity check
-    if (hasSpecificity) {
-        score += 1;
-        feedback.push({
-            type: 'positive',
-            title: '🔍 Specific Requirements',
-            message: 'Specific language leads to more precise AI responses.'
-        });
-    }
-    
-    // Vague terms check
-    if (hasVagueTerms) {
-        score -= 1;
-        feedback.push({
-            type: 'negative',
-            title: '🚫 Vague Language',
-            message: 'Replace vague terms with specific requirements for better results.'
-        });
-    }
-    
-    // Calculate grade
-    let grade = 'C';
-    if (score >= 5) grade = 'A';
-    else if (score >= 3) grade = 'B';
-    
-    return { score, grade, feedback, wordCount };
-}
-
-// Display Analysis Results
-function displayAnalysisResults(analysis) {
-    const scoreElement = document.getElementById('overall-score');
-    const contentElement = document.getElementById('results-content');
-    
-    if (!scoreElement || !contentElement) return;
-    
-    // Update score badge
-    scoreElement.textContent = `Grade: ${analysis.grade}`;
-    scoreElement.className = `score-badge score-${analysis.grade.toLowerCase()}`;
-    
-    // Clear previous results
-    contentElement.innerHTML = '';
-    
-    // Add feedback items
-    analysis.feedback.forEach(item => {
-        const feedbackDiv = document.createElement('div');
-        feedbackDiv.className = `result-item ${item.type}`;
-        feedbackDiv.innerHTML = `
-            <h4>${item.title}</h4>
-            <p>${item.message}</p>
-        `;
-        contentElement.appendChild(feedbackDiv);
-    });
-}
-
-// Setup Prompt Generator - Fixed
-function setupPromptGenerator() {
-    const generateBtn = document.getElementById('generate-btn');
-    const generatedSection = document.getElementById('generated-section');
-    const generatedPrompt = document.getElementById('generated-prompt');
-    
-    if (!generateBtn) {
-        console.log('Generate button not found');
-        return;
-    }
-    
-    generateBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const formData = getGeneratorFormData();
-        
-        if (!formData.basicPrompt.trim()) {
-            showNotification('Please enter a basic prompt', 'error');
-            return;
-        }
-        
-        console.log('Generating enhanced prompt...');
-        
-        // Show loading state
-        const originalHTML = generateBtn.innerHTML;
-        generateBtn.innerHTML = 'Generating...';
-        generateBtn.disabled = true;
-        
-        setTimeout(() => {
-            const enhancedPrompt = generateEnhancedPrompt(formData);
-            
-            if (generatedPrompt) {
-                generatedPrompt.value = enhancedPrompt;
-            }
-            
-            if (generatedSection) {
-                generatedSection.classList.remove('hidden');
-                generatedSection.style.display = 'block';
-            }
-            
-            // Reset button
-            generateBtn.innerHTML = originalHTML;
-            generateBtn.disabled = false;
-            
-            // Scroll to results
-            if (generatedSection) {
-                generatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            
-            console.log('Enhanced prompt generated');
-        }, 1000);
-    });
-    
-    console.log('Prompt generator setup complete');
-}
-
-// Get Generator Form Data
-function getGeneratorFormData() {
-    return {
-        basicPrompt: document.getElementById('basic-prompt')?.value || '',
-        purpose: document.getElementById('purpose-select')?.value || 'General Use',
-        aiModel: document.getElementById('ai-model')?.value || 'General',
-        persona: document.getElementById('persona-select')?.value || 'Professional',
-        tone: document.getElementById('tone-select')?.value || 'Formal',
-        outputFormat: document.getElementById('output-format')?.value || 'Paragraph'
-    };
-}
-
-// Generate Enhanced Prompt
-function generateEnhancedPrompt(data) {
-    let prompt = '';
-    
-    // Add persona
-    const personaMap = {
-        'Professional': 'professional expert',
-        'Creative': 'creative specialist',
-        'Technical': 'technical expert',
-        'Academic': 'academic researcher',
-        'Friendly': 'helpful assistant'
-    };
-    
-    prompt += `Act as a ${personaMap[data.persona]} with extensive experience. `;
-    
-    // Add basic prompt
-    prompt += `${data.basicPrompt} `;
-    
-    // Add purpose-specific enhancement
-    if (PURPOSE_ENHANCEMENTS[data.purpose]) {
-        prompt += PURPOSE_ENHANCEMENTS[data.purpose].enhancement + ' ';
-    }
-    
-    // Add tone guidance
-    const toneMap = {
-        'Formal': 'Use formal, professional language throughout your response.',
-        'Casual': 'Use conversational, approachable language while maintaining clarity.',
-        'Persuasive': 'Use persuasive language with compelling arguments and evidence.',
-        'Informative': 'Use clear, informative language focused on facts and details.',
-        'Creative': 'Use creative, engaging language with vivid descriptions.'
-    };
-    
-    prompt += toneMap[data.tone] + ' ';
-    
-    // Add format specification
-    const formatMap = {
-        'Paragraph': 'Structure your response in well-organized paragraphs with clear flow.',
-        'Bullet Points': 'Present your response as a comprehensive bullet-point list.',
-        'Numbered List': 'Format your response as a numbered list with clear, actionable items.',
-        'Table': 'Present your response in a structured table format with appropriate headers.',
-        'JSON': 'Return your response as valid, well-formatted JSON with logical structure.'
-    };
-    
-    prompt += formatMap[data.outputFormat];
-    
-    // Add AI model-specific optimizations
-    const modelOptimizations = {
-        'ChatGPT': ' Optimize for ChatGPT by using clear step-by-step reasoning.',
-        'Claude': ' Optimize for Claude by providing detailed analytical depth.',
-        'Gemini': ' Optimize for Gemini by leveraging multimodal capabilities when relevant.',
-        'Flux': ' Optimize for Flux by including specific visual descriptors and artistic terminology.',
-        'Midjourney': ' Optimize for Midjourney by including artistic style references and visual parameters.'
-    };
-    
-    if (modelOptimizations[data.aiModel]) {
-        prompt += modelOptimizations[data.aiModel];
-    }
-    
-    return prompt;
-}
-
-// Setup Copy Buttons
-function setupCopyButtons() {
-    // Copy generated prompt button
-    const copyGeneratedBtn = document.getElementById('copy-generated-btn');
-    if (copyGeneratedBtn) {
-        copyGeneratedBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const generatedPrompt = document.getElementById('generated-prompt');
-            if (generatedPrompt && generatedPrompt.value) {
-                copyToClipboard(generatedPrompt.value);
-                showNotification('Generated prompt copied to clipboard!', 'success');
-            }
-        });
-    }
-    
-    // Copy individual prompt buttons
-    const copyPromptBtns = document.querySelectorAll('.copy-prompt-btn');
-    copyPromptBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const promptText = this.getAttribute('data-prompt');
-            if (promptText) {
-                copyToClipboard(promptText);
-                showNotification('Prompt copied to clipboard!', 'success');
-            }
-        });
-    });
-    
-    console.log('Copy buttons setup complete');
-}
-
-// Copy to Clipboard
-function copyToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-            console.log('Text copied to clipboard');
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            fallbackCopyTextToClipboard(text);
-        });
-    } else {
-        fallbackCopyTextToClipboard(text);
-    }
-}
-
-// Fallback copy method
-function fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.top = '0';
-    textArea.style.left = '0';
-    textArea.style.position = 'fixed';
-    textArea.style.opacity = '0';
-    
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            console.log('Fallback: Text copied to clipboard');
-        }
-    } catch (err) {
-        console.error('Fallback: Could not copy text: ', err);
-    }
-    
-    document.body.removeChild(textArea);
-}
-
-// Mobile Navigation Setup
+// Mobile Navigation
 function setupMobileNavigation() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    
-    if (!navToggle || !navMenu) {
-        console.log('Mobile navigation elements not found');
-        return;
-    }
-    
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  
+  if (navToggle && navMenu) {
     navToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+      e.preventDefault();
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
+      if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
+  }
+}
+
+function closeMobileMenu() {
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  
+  if (navToggle && navMenu) {
+    navToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+}
+
+// Populate AI Tools
+function populateAITools() {
+  const toolsContainer = document.getElementById('toolsContainer');
+  if (!toolsContainer) {
+    console.log('⚠️ Tools container not found');
+    return;
+  }
+  
+  console.log('🔧 Populating AI tools...');
+  
+  // Group tools by category
+  const categories = {};
+  aiToolsData.forEach(tool => {
+    if (!categories[tool.category]) {
+      categories[tool.category] = [];
+    }
+    categories[tool.category].push(tool);
+  });
+  
+  // Clear container
+  toolsContainer.innerHTML = '';
+  
+  // Create sections for each category
+  Object.entries(categories).forEach(([category, tools]) => {
+    const categorySection = document.createElement('div');
+    categorySection.className = 'tools-category';
+    
+    const categoryTitle = document.createElement('h3');
+    categoryTitle.textContent = category;
+    categorySection.appendChild(categoryTitle);
+    
+    const toolsGrid = document.createElement('div');
+    toolsGrid.className = 'tools-grid';
+    
+    tools.forEach(tool => {
+      const toolCard = document.createElement('div');
+      toolCard.className = 'tool-card';
+      toolCard.addEventListener('click', () => {
+        window.open(tool.url, '_blank');
+      });
+      
+      toolCard.innerHTML = `
+        <h4>${tool.name}</h4>
+        <p>${tool.description}</p>
+        <div class="tool-rating">
+          <span class="stars">${generateStars(tool.rating)}</span>
+          <span class="rating-text">${tool.rating}★</span>
+        </div>
+      `;
+      
+      toolsGrid.appendChild(toolCard);
     });
     
-    console.log('Mobile navigation setup complete');
+    categorySection.appendChild(toolsGrid);
+    toolsContainer.appendChild(categorySection);
+  });
+  
+  console.log('✅ AI tools populated successfully');
 }
 
-// Close Mobile Menu
-function closeMobileMenu() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
+function generateStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  let stars = '';
+  
+  for (let i = 0; i < fullStars; i++) {
+    stars += '★';
+  }
+  
+  if (hasHalfStar) {
+    stars += '☆';
+  }
+  
+  const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+  for (let i = 0; i < remainingStars; i++) {
+    stars += '☆';
+  }
+  
+  return stars;
+}
+
+// Prompt Checker
+function setupPromptChecker() {
+  console.log('🔧 Setting up Prompt Checker...');
+  
+  const analyzeBtn = document.getElementById('analyze-btn');
+  const promptInput = document.getElementById('checkerInput');
+  const resultsSection = document.getElementById('checkerResults');
+  
+  if (!analyzeBtn || !promptInput || !resultsSection) {
+    console.log('⚠️ Prompt checker elements not found');
+    return;
+  }
+  
+  analyzeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     
-    if (navToggle && navMenu) {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
+    const promptText = promptInput.value.trim();
+    if (!promptText) {
+      showNotification('Please enter a prompt to analyze', 'error');
+      return;
     }
+    
+    console.log('🔍 Analyzing prompt...');
+    
+    // Show loading state
+    const originalHTML = analyzeBtn.innerHTML;
+    analyzeBtn.innerHTML = 'Analyzing...';
+    analyzeBtn.disabled = true;
+    
+    setTimeout(() => {
+      const analysis = analyzePrompt(promptText);
+      displayAnalysisResults(analysis);
+      
+      // Show results
+      resultsSection.classList.remove('hidden');
+      resultsSection.style.display = 'block';
+      
+      // Reset button
+      analyzeBtn.innerHTML = originalHTML;
+      analyzeBtn.disabled = false;
+      
+      // Scroll to results
+      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      console.log('✅ Analysis complete');
+    }, 1500);
+  });
+  
+  console.log('✅ Prompt checker setup complete');
 }
 
-// Show Notification
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 500;
-        z-index: 1001;
-        opacity: 0;
-        transform: translateX(100px);
-        transition: all 0.3s ease;
-        max-width: 300px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+function analyzePrompt(text) {
+  const wordCount = text.split(/\s+/).length;
+  let score = 0;
+  const feedback = [];
+  
+  // Check for key elements
+  const hasRole = /(?:act as|you are|assume the role)/i.test(text);
+  const hasContext = /(?:context|background|scenario|situation)/i.test(text);
+  const hasFormat = /(?:format|structure|table|list|bullet|json)/i.test(text);
+  const hasSpecificity = /(?:specific|detailed|exactly|precisely)/i.test(text);
+  
+  // Check for vague terms
+  const vagueTerms = ['something', 'anything', 'stuff', 'things', 'better', 'improve', 'good'];
+  const hasVagueTerms = vagueTerms.some(term => text.toLowerCase().includes(term));
+  
+  // Word count analysis
+  if (wordCount >= 20 && wordCount <= 150) {
+    score += 2;
+    feedback.push({
+      type: 'positive',
+      title: '✅ Good Length',
+      message: `Prompt length (${wordCount} words) is within the optimal range.`
+    });
+  } else if (wordCount < 20) {
+    feedback.push({
+      type: 'negative',
+      title: '⚠️ Too Short',
+      message: 'Consider adding more context and specific requirements.'
+    });
+  } else {
+    feedback.push({
+      type: 'negative',
+      title: '⚠️ Too Long',
+      message: 'Consider breaking this into smaller, focused prompts.'
+    });
+  }
+  
+  // Role definition
+  if (hasRole) {
+    score += 2;
+    feedback.push({
+      type: 'positive',
+      title: '🎯 Role Defined',
+      message: 'Good! You\'ve defined a specific role for the AI.'
+    });
+  } else {
+    feedback.push({
+      type: 'negative',
+      title: '❌ Missing Role',
+      message: 'Start with "Act as a [expert]" to give the AI context.'
+    });
+  }
+  
+  // Context check
+  if (hasContext) {
+    score += 1;
+    feedback.push({
+      type: 'positive',
+      title: '📝 Context Provided',
+      message: 'Good context helps the AI understand better.'
+    });
+  } else {
+    feedback.push({
+      type: 'neutral',
+      title: '💡 Add Context',
+      message: 'Consider adding background information.'
+    });
+  }
+  
+  // Format specification
+  if (hasFormat) {
+    score += 1;
+    feedback.push({
+      type: 'positive',
+      title: '📋 Format Specified',
+      message: 'Great! You\'ve specified the output format.'
+    });
+  } else {
+    feedback.push({
+      type: 'negative',
+      title: '❌ No Format Specified',
+      message: 'Specify desired output format (list, table, etc.).'
+    });
+  }
+  
+  // Specificity check
+  if (hasSpecificity) {
+    score += 1;
+    feedback.push({
+      type: 'positive',
+      title: '🔍 Specific Requirements',
+      message: 'Specific language leads to better results.'
+    });
+  }
+  
+  // Vague terms check
+  if (hasVagueTerms) {
+    score -= 1;
+    feedback.push({
+      type: 'negative',
+      title: '🚫 Vague Language',
+      message: 'Replace vague terms with specific requirements.'
+    });
+  }
+  
+  // Calculate grade
+  let grade = 'C';
+  if (score >= 5) grade = 'A';
+  else if (score >= 3) grade = 'B';
+  
+  return { score, grade, feedback, wordCount };
+}
+
+function displayAnalysisResults(analysis) {
+  const scoreElement = document.getElementById('overall-score');
+  const contentElement = document.getElementById('results-content');
+  
+  if (!scoreElement || !contentElement) return;
+  
+  // Update score badge
+  scoreElement.textContent = `Grade: ${analysis.grade}`;
+  scoreElement.className = `status status--${analysis.grade === 'A' ? 'success' : analysis.grade === 'B' ? 'warning' : 'error'}`;
+  
+  // Clear previous results
+  contentElement.innerHTML = '';
+  
+  // Add feedback items
+  analysis.feedback.forEach(item => {
+    const feedbackDiv = document.createElement('div');
+    feedbackDiv.className = `result-item ${item.type}`;
+    feedbackDiv.innerHTML = `
+      <h4>${item.title}</h4>
+      <p>${item.message}</p>
     `;
+    contentElement.appendChild(feedbackDiv);
+  });
+}
+
+// Prompt Generator
+function setupPromptGenerator() {
+  console.log('🔧 Setting up Prompt Generator...');
+  
+  const generateBtn = document.getElementById('generate-btn');
+  const generatedSection = document.getElementById('generated-section');
+  const copyBtn = document.getElementById('copy-generated-btn');
+  
+  if (!generateBtn) {
+    console.log('⚠️ Generate button not found');
+    return;
+  }
+  
+  generateBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     
-    // Set colors based on type
-    if (type === 'success') {
-        notification.style.background = 'rgba(0, 255, 136, 0.2)';
-        notification.style.color = '#00ff88';
-        notification.style.border = '1px solid #00ff88';
-    } else if (type === 'error') {
-        notification.style.background = 'rgba(255, 68, 68, 0.2)';
-        notification.style.color = '#ff4444';
-        notification.style.border = '1px solid #ff4444';
+    const userInput = document.getElementById('userInput').value.trim();
+    if (!userInput) {
+      showNotification('Please enter a basic prompt', 'error');
+      return;
+    }
+    
+    console.log('🎨 Generating enhanced prompt...');
+    
+    // Show loading state
+    const originalHTML = generateBtn.innerHTML;
+    generateBtn.innerHTML = 'Generating...';
+    generateBtn.disabled = true;
+    
+    setTimeout(() => {
+      const enhancedPrompt = buildEnhancedPrompt();
+      
+      // Display result
+      const promptOut = document.getElementById('promptOut');
+      if (promptOut) {
+        promptOut.value = enhancedPrompt;
+      }
+      
+      // Show generated section
+      if (generatedSection) {
+        generatedSection.classList.remove('hidden');
+        generatedSection.style.display = 'block';
+        generatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      
+      // Reset button
+      generateBtn.innerHTML = originalHTML;
+      generateBtn.disabled = false;
+      
+      showNotification('Enhanced prompt generated successfully!', 'success');
+      console.log('✅ Enhanced prompt generated');
+    }, 1000);
+  });
+  
+  // Setup copy button
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const promptOut = document.getElementById('promptOut');
+      if (promptOut && promptOut.value) {
+        copyToClipboard(promptOut.value);
+        showNotification('Prompt copied to clipboard!', 'success');
+      }
+    });
+  }
+  
+  console.log('✅ Prompt generator setup complete');
+}
+
+function buildEnhancedPrompt() {
+  const userInput = document.getElementById('userInput').value.trim();
+  const purpose = document.getElementById('purpose').value;
+  const model = document.getElementById('model').value;
+  const persona = document.getElementById('persona').value;
+  const tone = document.getElementById('tone').value;
+  const format = document.getElementById('format').value;
+  
+  let enhancedPrompt = '';
+  
+  // Handle Image Generation differently
+  if (purpose === 'Image Generation') {
+    enhancedPrompt = userInput;
+    
+    // Add image-specific enhancements
+    const imageEnhancements = [
+      'high quality',
+      'detailed composition',
+      'professional photography',
+      'cinematic lighting',
+      'vivid colors',
+      'sharp focus',
+      '8k resolution'
+    ];
+    
+    if (model === 'Midjourney') {
+      enhancedPrompt += `, ${imageEnhancements.join(', ')}, --ar 16:9 --v 6 --style raw`;
+    } else if (model === 'Flux') {
+      enhancedPrompt += `, ${imageEnhancements.join(', ')}, photorealistic, ultra-detailed`;
+    } else if (model === 'DALL-E') {
+      enhancedPrompt += `, ${imageEnhancements.join(', ')}, digital art style`;
     } else {
-        notification.style.background = 'rgba(0, 245, 255, 0.2)';
-        notification.style.color = '#00f5ff';
-        notification.style.border = '1px solid #00f5ff';
+      enhancedPrompt += `, ${imageEnhancements.slice(0, 4).join(', ')}`;
     }
     
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateX(0)';
-    }, 10);
-    
-    // Remove after delay
-    setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(100px)';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
+    return enhancedPrompt;
+  }
+  
+  // For other purposes, build structured prompt
+  let rolePrefix = '';
+  let suffix = '';
+  
+  // Define role based on purpose and persona
+  const roles = {
+    'Report Analysis': 'data analyst',
+    'Data Analysis': 'data scientist', 
+    'Code Generation': 'senior software engineer',
+    'Content Creation': 'content marketing specialist',
+    'Conversational AI': 'helpful AI assistant'
+  };
+  
+  const role = roles[purpose] || 'expert';
+  rolePrefix = `Act as a ${persona.toLowerCase()} ${role} and `;
+  
+  // Add purpose-specific guidance
+  const purposeGuidance = {
+    'Report Analysis': 'Structure your analysis with executive summary, key findings, trends, and actionable recommendations.',
+    'Data Analysis': 'Provide statistical insights, identify patterns, and suggest data-driven recommendations.',
+    'Code Generation': 'Include comments, error handling, and follow best practices for clean, maintainable code.',
+    'Content Creation': 'Make it engaging, SEO-friendly, and tailored to the target audience.',
+    'Conversational AI': 'Be conversational, empathetic, and provide practical advice.'
+  };
+  
+  if (purposeGuidance[purpose]) {
+    suffix += ` ${purposeGuidance[purpose]}`;
+  }
+  
+  // Add tone guidance
+  const toneGuidance = {
+    'Professional': ' Use formal, professional language.',
+    'Casual': ' Use conversational, friendly language.',
+    'Technical': ' Use precise technical terminology.',
+    'Creative': ' Use creative, engaging language.',
+    'Formal': ' Maintain a formal, academic tone.'
+  };
+  
+  if (toneGuidance[tone]) {
+    suffix += toneGuidance[tone];
+  }
+  
+  // Add format specification
+  const formatGuidance = {
+    'Bullet Points': ' Present the information as clear bullet points.',
+    'Step-by-Step': ' Organize the response as numbered steps.',
+    'Table': ' Structure the information in a table format.',
+    'JSON': ' Format the response as valid JSON.',
+    'Paragraph': ' Present as well-structured paragraphs.'
+  };
+  
+  if (formatGuidance[format]) {
+    suffix += formatGuidance[format];
+  }
+  
+  // Build final prompt
+  enhancedPrompt = rolePrefix + userInput + '.' + suffix;
+  
+  return enhancedPrompt;
 }
 
-// Handle browser back/forward buttons
+// Image Upload and Analysis
+function setupImageUpload() {
+  console.log('🔧 Setting up Image Upload...');
+  
+  const imageUpload = document.getElementById('imageUpload');
+  const imagePreview = document.getElementById('imagePreview');
+  const previewImg = document.getElementById('previewImg');
+  const removeImageBtn = document.getElementById('removeImage');
+  
+  if (!imageUpload) {
+    console.log('⚠️ Image upload elements not found');
+    return;
+  }
+  
+  imageUpload.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        imagePreview.classList.remove('hidden');
+        imagePreview.style.display = 'block';
+        
+        // Generate prompt from image
+        generateImagePrompt(file);
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  if (removeImageBtn) {
+    removeImageBtn.addEventListener('click', function() {
+      imageUpload.value = '';
+      imagePreview.classList.add('hidden');
+      imagePreview.style.display = 'none';
+      previewImg.src = '';
+      
+      // Clear any generated prompt
+      const promptOut = document.getElementById('promptOut');
+      const generatedSection = document.getElementById('generated-section');
+      if (promptOut) promptOut.value = '';
+      if (generatedSection) {
+        generatedSection.classList.add('hidden');
+        generatedSection.style.display = 'none';
+      }
+    });
+  }
+  
+  console.log('✅ Image upload setup complete');
+}
+
+function generateImagePrompt(imageFile) {
+  // Simulate image analysis and generate descriptive prompt
+  const generatedSection = document.getElementById('generated-section');
+  const promptOut = document.getElementById('promptOut');
+  
+  if (!promptOut || !generatedSection) return;
+  
+  // Show loading
+  showNotification('Analyzing image and generating prompt...', 'info');
+  
+  setTimeout(() => {
+    // Generate a comprehensive descriptive prompt based on common visual elements
+    const imagePrompt = generateDetailedImageDescription();
+    
+    promptOut.value = imagePrompt;
+    generatedSection.classList.remove('hidden');
+    generatedSection.style.display = 'block';
+    generatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    showNotification('Image prompt generated! Copy and use it to recreate similar images.', 'success');
+  }, 2000);
+}
+
+function generateDetailedImageDescription() {
+  // Generate a comprehensive template for image description
+  const compositions = ['centered composition', 'rule of thirds', 'symmetrical layout', 'dynamic asymmetry'];
+  const lightings = ['natural daylight', 'golden hour lighting', 'dramatic side lighting', 'soft diffused light', 'cinematic lighting'];
+  const styles = ['photorealistic', 'artistic photography', 'professional portrait', 'documentary style', 'commercial photography'];
+  const colors = ['vibrant color palette', 'muted earth tones', 'high contrast', 'monochromatic scheme', 'warm color temperature'];
+  const details = ['sharp focus', 'shallow depth of field', 'high detail texture', 'crisp clarity', 'professional quality'];
+  const cameras = ['shot with professional camera', '85mm lens perspective', 'wide angle view', 'macro detail shot', 'portrait orientation'];
+  
+  // Randomly select elements to create a varied description
+  const selectedComposition = compositions[Math.floor(Math.random() * compositions.length)];
+  const selectedLighting = lightings[Math.floor(Math.random() * lightings.length)];
+  const selectedStyle = styles[Math.floor(Math.random() * styles.length)];
+  const selectedColors = colors[Math.floor(Math.random() * colors.length)];
+  const selectedDetails = details[Math.floor(Math.random() * details.length)];
+  const selectedCamera = cameras[Math.floor(Math.random() * cameras.length)];
+  
+  return `A detailed ${selectedStyle} image featuring ${selectedComposition}, ${selectedLighting}, ${selectedColors}, ${selectedDetails}, ${selectedCamera}, professional photography, high resolution, studio quality, award-winning composition, perfect exposure, beautiful bokeh, artistic vision, masterpiece quality, 8k resolution, ultra-sharp focus, pristine clarity, exceptional detail, premium production value`;
+}
+
+// Utility Functions
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log('Text copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+      fallbackCopyTextToClipboard(text);
+    });
+  } else {
+    fallbackCopyTextToClipboard(text);
+  }
+}
+
+function fallbackCopyTextToClipboard(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.opacity = '0';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  
+  try {
+    document.execCommand('copy');
+    console.log('Fallback copy successful');
+  } catch (err) {
+    console.error('Fallback copy failed: ', err);
+  }
+  
+  document.body.removeChild(textArea);
+}
+
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.textContent = message;
+  
+  const container = document.getElementById('notification-container') || document.body;
+  container.appendChild(notification);
+  
+  // Animate in
+  setTimeout(() => notification.classList.add('show'), 10);
+  
+  // Remove after delay
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// Handle browser navigation
 window.addEventListener('popstate', function(e) {
-    handleInitialRoute();
+  const hash = window.location.hash.substring(1);
+  const targetSection = hash || 'home';
+  navigateToSection(targetSection);
 });
 
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Escape key - close mobile menu
-    if (e.key === 'Escape') {
-        closeMobileMenu();
-    }
-    
-    // Ctrl/Cmd + K - focus input
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        if (currentSection === 'checker') {
-            const promptInput = document.getElementById('prompt-input');
-            if (promptInput) promptInput.focus();
-        } else if (currentSection === 'generator') {
-            const basicPrompt = document.getElementById('basic-prompt');
-            if (basicPrompt) basicPrompt.focus();
-        }
-    }
-});
-
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded');
-    initializeApp();
-});
-
-// Fallback initialization
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp);
-} else {
-    console.log('DOM already ready');
-    initializeApp();
-}
-
-console.log('✅ PromptCraft Portal JavaScript loaded');
+console.log('✅ vicky.ai JavaScript loaded successfully');
