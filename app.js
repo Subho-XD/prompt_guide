@@ -1,87 +1,113 @@
 // vicky.ai - Internal Prompt Engineering Platform
 let currentSection = 'home';
 
-// AI Tools Data (25 tools as specified)
+// Complete AI Tools Data (25 tools organized by categories)
 const aiToolsData = [
-  // Text Generation
-  {"name": "ChatGPT", "category": "Text Generation", "url": "https://chat.openai.com", "rating": 4.8, "description": "Advanced conversational AI for text generation and analysis"},
-  {"name": "Claude", "category": "Text Generation", "url": "https://claude.ai", "rating": 4.7, "description": "Anthropic's AI assistant for complex reasoning and writing"},
-  {"name": "Gemini", "category": "Text Generation", "url": "https://gemini.google.com", "rating": 4.6, "description": "Google's multimodal AI with advanced text capabilities"},
-  {"name": "Jasper", "category": "Text Generation", "url": "https://jasper.ai", "rating": 4.3, "description": "AI writing assistant for marketing and content creation"},
-  {"name": "Copy.ai", "category": "Text Generation", "url": "https://copy.ai", "rating": 4.2, "description": "AI-powered copywriting and content generation tool"},
+  // Assistant Category
+  {"name": "ChatGPT", "category": "Assistant", "url": "https://chat.openai.com", "rating": 4.8, "description": "Advanced conversational AI for complex reasoning and text generation"},
+  {"name": "Claude", "category": "Assistant", "url": "https://claude.ai", "rating": 4.7, "description": "Anthropic's AI assistant with superior analytical capabilities"},
+  {"name": "Gemini", "category": "Assistant", "url": "https://gemini.google.com", "rating": 4.6, "description": "Google's multimodal AI with integrated search capabilities"},
+  {"name": "Perplexity", "category": "Assistant", "url": "https://perplexity.ai", "rating": 4.5, "description": "AI-powered research assistant with real-time web access"},
+  {"name": "Character.AI", "category": "Assistant", "url": "https://character.ai", "rating": 4.3, "description": "Conversational AI with customizable personality characters"},
 
-  // Image Generation
-  {"name": "Midjourney", "category": "Image Generation", "url": "https://midjourney.com", "rating": 4.9, "description": "High-quality AI image generation with artistic styles"},
-  {"name": "DALL-E 3", "category": "Image Generation", "url": "https://openai.com/dall-e-3", "rating": 4.7, "description": "OpenAI's advanced text-to-image generator"},
-  {"name": "Stable Diffusion", "category": "Image Generation", "url": "https://stability.ai", "rating": 4.6, "description": "Open-source AI image generation model"},
-  {"name": "Flux", "category": "Image Generation", "url": "https://flux.ai", "rating": 4.5, "description": "Fast and efficient AI image generation"},
-  {"name": "Leonardo AI", "category": "Image Generation", "url": "https://leonardo.ai", "rating": 4.4, "description": "AI art generator with fine-tuned control"},
+  // Image Generation Category
+  {"name": "Midjourney", "category": "Image Generation", "url": "https://midjourney.com", "rating": 4.8, "description": "Premium AI art generation with exceptional artistic quality"},
+  {"name": "DALL-E 3", "category": "Image Generation", "url": "https://openai.com/dall-e-3", "rating": 4.7, "description": "OpenAI's latest text-to-image model with improved accuracy"},
+  {"name": "Stable Diffusion", "category": "Image Generation", "url": "https://stability.ai", "rating": 4.6, "description": "Open-source image generation with extensive customization"},
+  {"name": "Flux", "category": "Image Generation", "url": "https://flux1.ai", "rating": 4.5, "description": "Fast, high-quality image generation with photorealistic results"},
+  {"name": "Firefly", "category": "Image Generation", "url": "https://firefly.adobe.com", "rating": 4.4, "description": "Adobe's commercial-safe AI image generator"},
 
-  // Video Generation
-  {"name": "Runway ML", "category": "Video Generation", "url": "https://runwayml.com", "rating": 4.6, "description": "AI video editing and generation platform"},
-  {"name": "Pika Labs", "category": "Video Generation", "url": "https://pika.art", "rating": 4.4, "description": "Text-to-video AI generation tool"},
-  {"name": "Synthesia", "category": "Video Generation", "url": "https://synthesia.io", "rating": 4.3, "description": "AI avatar video creation platform"},
-  {"name": "D-ID", "category": "Video Generation", "url": "https://d-id.com", "rating": 4.2, "description": "AI-powered talking head video generation"},
-  {"name": "HeyGen", "category": "Video Generation", "url": "https://heygen.com", "rating": 4.1, "description": "AI video generation with realistic avatars"},
+  // Video Generation Category
+  {"name": "Runway", "category": "Video Generation", "url": "https://runwayml.com", "rating": 4.6, "description": "Professional AI video editing and generation platform"},
+  {"name": "Pika Labs", "category": "Video Generation", "url": "https://pika.art", "rating": 4.4, "description": "Text-to-video generation with cinematic quality"},
+  {"name": "Synthesia", "category": "Video Generation", "url": "https://synthesia.io", "rating": 4.3, "description": "AI avatar video creation for business presentations"},
+  {"name": "Luma Dream", "category": "Video Generation", "url": "https://lumalabs.ai", "rating": 4.2, "description": "3D scene generation and video creation"},
+  {"name": "Kaiber", "category": "Video Generation", "url": "https://kaiber.ai", "rating": 4.1, "description": "Music video and creative content generation"},
 
-  // Code Generation
-  {"name": "GitHub Copilot", "category": "Code Generation", "url": "https://github.com/features/copilot", "rating": 4.8, "description": "AI pair programmer for code completion"},
-  {"name": "Cursor", "category": "Code Generation", "url": "https://cursor.sh", "rating": 4.6, "description": "AI-powered code editor and assistant"},
-  {"name": "Tabnine", "category": "Code Generation", "url": "https://tabnine.com", "rating": 4.4, "description": "AI code completion for multiple IDEs"},
-  {"name": "CodeT5", "category": "Code Generation", "url": "https://huggingface.co/Salesforce/codet5-large", "rating": 4.2, "description": "AI model for code understanding and generation"},
-  {"name": "Codex", "category": "Code Generation", "url": "https://openai.com/blog/openai-codex", "rating": 4.1, "description": "OpenAI's code generation model"},
+  // Data Analysis Category
+  {"name": "Julius AI", "category": "Data Analysis", "url": "https://julius.ai", "rating": 4.5, "description": "AI-powered data analysis and visualization platform"},
+  {"name": "Akkio", "category": "Data Analysis", "url": "https://akkio.com", "rating": 4.3, "description": "No-code machine learning for business analytics"},
+  {"name": "DataRobot", "category": "Data Analysis", "url": "https://datarobot.com", "rating": 4.4, "description": "Enterprise AI platform for automated machine learning"},
+  {"name": "Tableau GPT", "category": "Data Analysis", "url": "https://tableau.com", "rating": 4.2, "description": "AI-enhanced business intelligence and visualization"},
+  {"name": "MonkeyLearn", "category": "Data Analysis", "url": "https://monkeylearn.com", "rating": 4.1, "description": "Text analysis and data mining platform"},
 
-  // Audio Generation
-  {"name": "ElevenLabs", "category": "Audio Generation", "url": "https://elevenlabs.io", "rating": 4.7, "description": "AI voice cloning and text-to-speech"},
-  {"name": "Murf", "category": "Audio Generation", "url": "https://murf.ai", "rating": 4.4, "description": "AI voiceover generation platform"},
-  {"name": "Speechify", "category": "Audio Generation", "url": "https://speechify.com", "rating": 4.3, "description": "AI text-to-speech reading assistant"},
-  {"name": "Descript", "category": "Audio Generation", "url": "https://descript.com", "rating": 4.2, "description": "AI-powered audio and video editing"},
-  {"name": "Resemble", "category": "Audio Generation", "url": "https://resemble.ai", "rating": 4.1, "description": "AI voice generator and cloning platform"}
+  // Code Generation Category
+  {"name": "GitHub Copilot", "category": "Code Generation", "url": "https://github.com/features/copilot", "rating": 4.7, "description": "AI pair programmer with context-aware code completion"},
+  {"name": "Cursor", "category": "Code Generation", "url": "https://cursor.sh", "rating": 4.6, "description": "AI-first code editor with intelligent suggestions"},
+  {"name": "Replit", "category": "Code Generation", "url": "https://replit.com", "rating": 4.4, "description": "Cloud-based coding with AI assistance"},
+  {"name": "CodeWhisperer", "category": "Code Generation", "url": "https://aws.amazon.com/codewhisperer", "rating": 4.3, "description": "Amazon's AI coding companion for AWS development"},
+  {"name": "Tabnine", "category": "Code Generation", "url": "https://tabnine.com", "rating": 4.2, "description": "AI code completion for multiple programming languages"}
 ];
 
-// Expert prompts organized by category (18 prompts)
-const expertPrompts = {
-  "Schedules & Timelines": [
-    "Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.",
-    "Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.",
-    "Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarise in a table."
-  ],
-  "Communication": [
+// Complete Prompt Library (30 prompts total)
+const promptLibrary = {
+  projectManagement: [
+    "Create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.",
+    "Generate a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.",
+    "Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarise in a table.",
     "Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).",
     "Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.",
-    "Write a milestone update for executives: current status, wins, next steps, risks."
-  ],
-  "Resource Management": [
+    "Write a milestone update for executives: current status, wins, next steps, risks.",
     "Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.",
     "Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.",
-    "Given this workload data [paste], highlight bottlenecks & suggest reallocation."
-  ],
-  "Budget Management": [
+    "Given this workload data [paste], highlight bottlenecks & suggest reallocation.",
     "Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.",
     "Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.",
-    "Suggest 5 cost-saving ideas for a $X project; estimate savings."
-  ],
-  "Problem-Solving": [
+    "Suggest 5 cost-saving ideas for a $X project; estimate savings.",
     "Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.",
     "Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.",
-    "Generate three alternative solutions to [challenge] with pros/cons, recommend best."
-  ],
-  "Quality": [
+    "Generate three alternative solutions to [challenge] with pros/cons, recommend best.",
     "Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).",
     "Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].",
     "Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them."
+  ],
+  crossFunctional: [
+    "Produce a cinematic Midjourney prompt that recreates [concept] including composition, lighting, lens, colour palette and mood.",
+    "You are a senior data scientist. Given the attached CSV, summarise key distributions, flag outliers and propose two visualisations.",
+    "Write a five-part onboarding email sequence for a B2B SaaS trial, using AIDA and 120-character subject lines.",
+    "Generate a polite reply to a delayed-shipping complaint; apologise, give status, offer 10% refund.",
+    "Act as an ISO 27001 auditor. List top cyber-risks for migrating HR data to cloud; rate likelihood/severity.",
+    "Create a one-page exec brief comparing options A/B/C across cost, ROI and implementation risk.",
+    "Write a secure Flask endpoint that accepts JSON, validates schema and writes to Postgres with SQLAlchemy.",
+    "Design a 4-week crash course on Python for non-technical product managers; include weekly goals, readings, exercises.",
+    "Rewrite this paragraph in the voice of Neil Gaiman, keeping core plot points.",
+    "Suggest the best chart types to compare revenue growth across five regions over three years; justify choice.",
+    "Evaluate the following prompt for clarity, context and constraints; suggest three improvements.",
+    "Act as a Socratic tutor. Ask step-by-step questions to help me derive the time-complexity of binary search."
   ]
 };
 
-// Global navigation function to be used by onclick handlers
-window.navigateToSection = function(sectionId) {
-  console.log(`🔄 Navigating to section: ${sectionId}`);
-  currentSection = sectionId;
-  showSection(sectionId);
-  updateNavigationState(sectionId);
-  closeMobileMenu();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+// Best Practices (7 key principles)
+const bestPractices = [
+  {
+    title: "Be Specific & Complete",
+    description: "Replace vague terms with precise requirements. Use exact numbers, formats, and deliverables."
+  },
+  {
+    title: "Define AI's Role",
+    description: "Start with 'Act as a [expert]' to give context and establish the right mindset for responses."
+  },
+  {
+    title: "Specify Output Format",
+    description: "Always define how you want the response structured: table, bullets, steps, JSON, etc."
+  },
+  {
+    title: "Iterate & Refine",
+    description: "Treat AI like a junior analyst. Review outputs and ask follow-up questions for improvement."
+  },
+  {
+    title: "Avoid Negatives",
+    description: "Tell AI what to do, not what to avoid. Positive instructions yield better results."
+  },
+  {
+    title: "Supply Examples & Data",
+    description: "Provide context, examples, or data to reduce hallucinations and improve accuracy."
+  },
+  {
+    title: "Break Down Complex Tasks",
+    description: "Split large requests into smaller, sequential prompts for better quality and control."
+  }
+];
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
@@ -89,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   setupNavigation();
   setupMobileNavigation();
+  populateHomeContent();
   populateAITools();
   setupPromptChecker();
   setupPromptGenerator();
@@ -100,6 +127,19 @@ document.addEventListener('DOMContentLoaded', function() {
   
   console.log('✅ vicky.ai initialized successfully');
 });
+
+// Global navigation function
+function navigateToSection(sectionId) {
+  console.log(`🔄 Navigating to section: ${sectionId}`);
+  currentSection = sectionId;
+  showSection(sectionId);
+  updateNavigationState(sectionId);
+  closeMobileMenu();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Make navigation function globally accessible
+window.navigateToSection = navigateToSection;
 
 // Navigation System
 function setupNavigation() {
@@ -125,13 +165,12 @@ function setupNavigation() {
 function showSection(targetSectionId) {
   console.log(`👁️ Showing section: ${targetSectionId}`);
   
-  // Hide all sections
+  // Hide all sections first
   const allSections = document.querySelectorAll('.section');
   console.log(`Found ${allSections.length} sections to manage`);
   
   allSections.forEach((section, index) => {
     section.classList.add('hidden');
-    section.style.display = 'none';
     console.log(`Hidden section ${index + 1}: ${section.id}`);
   });
   
@@ -139,7 +178,6 @@ function showSection(targetSectionId) {
   const targetSection = document.getElementById(targetSectionId);
   if (targetSection) {
     targetSection.classList.remove('hidden');
-    targetSection.style.display = 'block';
     console.log(`✅ Section ${targetSectionId} is now visible`);
   } else {
     console.error(`❌ Section ${targetSectionId} not found!`);
@@ -193,6 +231,81 @@ function closeMobileMenu() {
     navMenu.classList.remove('active');
   }
 }
+
+// Populate Home Content
+function populateHomeContent() {
+  console.log('🔧 Populating home content...');
+  
+  // Populate Project Management Prompts
+  const projectPromptsContainer = document.getElementById('project-prompts');
+  if (projectPromptsContainer) {
+    projectPromptsContainer.innerHTML = '';
+    promptLibrary.projectManagement.forEach((prompt, index) => {
+      const promptCard = createPromptCard(prompt, `pm-${index}`);
+      projectPromptsContainer.appendChild(promptCard);
+    });
+  }
+  
+  // Populate Cross-Functional Prompts
+  const crossFunctionalContainer = document.getElementById('cross-functional-prompts');
+  if (crossFunctionalContainer) {
+    crossFunctionalContainer.innerHTML = '';
+    promptLibrary.crossFunctional.forEach((prompt, index) => {
+      const promptCard = createPromptCard(prompt, `cf-${index}`);
+      crossFunctionalContainer.appendChild(promptCard);
+    });
+  }
+  
+  // Populate Best Practices
+  const bestPracticesContainer = document.getElementById('best-practices-grid');
+  if (bestPracticesContainer) {
+    bestPracticesContainer.innerHTML = '';
+    bestPractices.forEach((practice, index) => {
+      const practiceCard = createPracticeCard(practice, index + 1);
+      bestPracticesContainer.appendChild(practiceCard);
+    });
+  }
+  
+  console.log('✅ Home content populated successfully');
+}
+
+function createPromptCard(prompt, id) {
+  const card = document.createElement('div');
+  card.className = 'prompt-card';
+  card.innerHTML = `
+    <p>${prompt}</p>
+    <button class="copy-btn" onclick="copyPrompt('${prompt}', this)">Copy</button>
+  `;
+  return card;
+}
+
+function createPracticeCard(practice, number) {
+  const card = document.createElement('div');
+  card.className = 'practice-card';
+  card.innerHTML = `
+    <div class="practice-number">${number}</div>
+    <h5>${practice.title}</h5>
+    <p>${practice.description}</p>
+  `;
+  return card;
+}
+
+// Copy prompt functionality - make it globally accessible
+function copyPrompt(promptText, button) {
+  copyToClipboard(promptText);
+  
+  const originalText = button.textContent;
+  button.textContent = 'Copied!';
+  button.style.background = '#10b981';
+  
+  setTimeout(() => {
+    button.textContent = originalText;
+    button.style.background = '';
+  }, 2000);
+}
+
+// Make copyPrompt globally accessible
+window.copyPrompt = copyPrompt;
 
 // Populate AI Tools
 function populateAITools() {
@@ -311,7 +424,6 @@ function setupPromptChecker() {
       
       // Show results
       resultsSection.classList.remove('hidden');
-      resultsSection.style.display = 'block';
       
       // Reset button
       analyzeBtn.innerHTML = originalHTML;
@@ -337,6 +449,7 @@ function analyzePrompt(text) {
   const hasContext = /(?:context|background|scenario|situation)/i.test(text);
   const hasFormat = /(?:format|structure|table|list|bullet|json)/i.test(text);
   const hasSpecificity = /(?:specific|detailed|exactly|precisely)/i.test(text);
+  const hasExamples = /(?:example|for instance|such as)/i.test(text);
   
   // Check for vague terms
   const vagueTerms = ['something', 'anything', 'stuff', 'things', 'better', 'improve', 'good'];
@@ -347,20 +460,20 @@ function analyzePrompt(text) {
     score += 2;
     feedback.push({
       type: 'positive',
-      title: '✅ Good Length',
-      message: `Prompt length (${wordCount} words) is within the optimal range.`
+      title: '✅ Optimal Length',
+      message: `Prompt length (${wordCount} words) is within the optimal range for clear, actionable results.`
     });
   } else if (wordCount < 20) {
     feedback.push({
       type: 'negative',
       title: '⚠️ Too Short',
-      message: 'Consider adding more context and specific requirements.'
+      message: 'Consider adding more context, specific requirements, and desired output format.'
     });
   } else {
     feedback.push({
       type: 'negative',
       title: '⚠️ Too Long',
-      message: 'Consider breaking this into smaller, focused prompts.'
+      message: 'Consider breaking this into smaller, focused prompts for better results.'
     });
   }
   
@@ -370,13 +483,13 @@ function analyzePrompt(text) {
     feedback.push({
       type: 'positive',
       title: '🎯 Role Defined',
-      message: 'Good! You\'ve defined a specific role for the AI.'
+      message: 'Excellent! You\'ve defined a specific role/persona for the AI to adopt.'
     });
   } else {
     feedback.push({
       type: 'negative',
       title: '❌ Missing Role',
-      message: 'Start with "Act as a [expert]" to give the AI context.'
+      message: 'Start with "Act as a [expert]" to give the AI proper context and expertise.'
     });
   }
   
@@ -386,13 +499,13 @@ function analyzePrompt(text) {
     feedback.push({
       type: 'positive',
       title: '📝 Context Provided',
-      message: 'Good context helps the AI understand better.'
+      message: 'Good context helps the AI understand the situation and provide relevant responses.'
     });
   } else {
     feedback.push({
-      type: 'neutral',
+      type: 'negative',
       title: '💡 Add Context',
-      message: 'Consider adding background information.'
+      message: 'Include background information or situational context for better results.'
     });
   }
   
@@ -402,13 +515,13 @@ function analyzePrompt(text) {
     feedback.push({
       type: 'positive',
       title: '📋 Format Specified',
-      message: 'Great! You\'ve specified the output format.'
+      message: 'Great! You\'ve specified the desired output format for structured results.'
     });
   } else {
     feedback.push({
       type: 'negative',
       title: '❌ No Format Specified',
-      message: 'Specify desired output format (list, table, etc.).'
+      message: 'Specify desired output format (bullet points, table, step-by-step, etc.).'
     });
   }
   
@@ -417,8 +530,18 @@ function analyzePrompt(text) {
     score += 1;
     feedback.push({
       type: 'positive',
-      title: '🔍 Specific Requirements',
-      message: 'Specific language leads to better results.'
+      title: '🔍 Specific Language',
+      message: 'Specific, detailed language leads to more precise and useful results.'
+    });
+  }
+  
+  // Examples check
+  if (hasExamples) {
+    score += 1;
+    feedback.push({
+      type: 'positive',
+      title: '📖 Examples Included',
+      message: 'Providing examples helps the AI understand exactly what you\'re looking for.'
     });
   }
   
@@ -427,8 +550,8 @@ function analyzePrompt(text) {
     score -= 1;
     feedback.push({
       type: 'negative',
-      title: '🚫 Vague Language',
-      message: 'Replace vague terms with specific requirements.'
+      title: '🚫 Vague Language Detected',
+      message: 'Replace vague terms with specific, measurable requirements for better results.'
     });
   }
   
@@ -507,7 +630,6 @@ function setupPromptGenerator() {
       // Show generated section
       if (generatedSection) {
         generatedSection.classList.remove('hidden');
-        generatedSection.style.display = 'block';
         generatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       
@@ -545,11 +667,11 @@ function buildEnhancedPrompt() {
   
   let enhancedPrompt = '';
   
-  // Handle Image Generation differently
+  // Handle Image Generation specifically
   if (purpose === 'Image Generation') {
     enhancedPrompt = userInput;
     
-    // Add image-specific enhancements
+    // Add image-specific enhancements based on model
     const imageEnhancements = [
       'high quality',
       'detailed composition',
@@ -557,15 +679,16 @@ function buildEnhancedPrompt() {
       'cinematic lighting',
       'vivid colors',
       'sharp focus',
-      '8k resolution'
+      '8k resolution',
+      'masterpiece quality'
     ];
     
     if (model === 'Midjourney') {
-      enhancedPrompt += `, ${imageEnhancements.join(', ')}, --ar 16:9 --v 6 --style raw`;
+      enhancedPrompt += `, ${imageEnhancements.join(', ')}, --ar 16:9 --v 6 --style raw --quality 2`;
     } else if (model === 'Flux') {
-      enhancedPrompt += `, ${imageEnhancements.join(', ')}, photorealistic, ultra-detailed`;
+      enhancedPrompt += `, ${imageEnhancements.join(', ')}, photorealistic, ultra-detailed, award-winning photography`;
     } else if (model === 'DALL-E') {
-      enhancedPrompt += `, ${imageEnhancements.join(', ')}, digital art style`;
+      enhancedPrompt += `, ${imageEnhancements.slice(0, 5).join(', ')}, digital art style, trending on artstation`;
     } else {
       enhancedPrompt += `, ${imageEnhancements.slice(0, 4).join(', ')}`;
     }
@@ -579,11 +702,12 @@ function buildEnhancedPrompt() {
   
   // Define role based on purpose and persona
   const roles = {
-    'Report Analysis': 'data analyst',
-    'Data Analysis': 'data scientist', 
+    'Report Analysis': 'senior business analyst',
+    'Data Analysis': 'expert data scientist', 
     'Code Generation': 'senior software engineer',
-    'Content Creation': 'content marketing specialist',
-    'Conversational AI': 'helpful AI assistant'
+    'Content Creation': 'professional content strategist',
+    'Conversational AI': 'helpful AI assistant',
+    'General Use': 'expert consultant'
   };
   
   const role = roles[purpose] || 'expert';
@@ -591,11 +715,11 @@ function buildEnhancedPrompt() {
   
   // Add purpose-specific guidance
   const purposeGuidance = {
-    'Report Analysis': 'Structure your analysis with executive summary, key findings, trends, and actionable recommendations.',
-    'Data Analysis': 'Provide statistical insights, identify patterns, and suggest data-driven recommendations.',
-    'Code Generation': 'Include comments, error handling, and follow best practices for clean, maintainable code.',
-    'Content Creation': 'Make it engaging, SEO-friendly, and tailored to the target audience.',
-    'Conversational AI': 'Be conversational, empathetic, and provide practical advice.'
+    'Report Analysis': 'Structure your analysis with: 1) Executive summary, 2) Key findings with data points, 3) Trends and patterns, 4) Actionable recommendations with timelines.',
+    'Data Analysis': 'Provide: 1) Statistical overview, 2) Key insights and correlations, 3) Visual recommendations, 4) Data-driven conclusions with confidence levels.',
+    'Code Generation': 'Include: 1) Clean, commented code, 2) Error handling, 3) Best practices implementation, 4) Testing considerations.',
+    'Content Creation': 'Create content that is: 1) Engaging and audience-focused, 2) SEO-optimized, 3) Brand-aligned, 4) Action-oriented.',
+    'Conversational AI': 'Respond in a way that is: 1) Conversational and empathetic, 2) Practical and actionable, 3) Clear and concise.'
   };
   
   if (purposeGuidance[purpose]) {
@@ -604,11 +728,11 @@ function buildEnhancedPrompt() {
   
   // Add tone guidance
   const toneGuidance = {
-    'Professional': ' Use formal, professional language.',
-    'Casual': ' Use conversational, friendly language.',
-    'Technical': ' Use precise technical terminology.',
-    'Creative': ' Use creative, engaging language.',
-    'Formal': ' Maintain a formal, academic tone.'
+    'Professional': ' Use formal, business-appropriate language with industry terminology.',
+    'Casual': ' Use conversational, friendly language that\'s easy to understand.',
+    'Technical': ' Use precise technical terminology and detailed explanations.',
+    'Creative': ' Use engaging, innovative language with creative examples.',
+    'Formal': ' Maintain a formal, academic tone with structured arguments.'
   };
   
   if (toneGuidance[tone]) {
@@ -617,11 +741,11 @@ function buildEnhancedPrompt() {
   
   // Add format specification
   const formatGuidance = {
-    'Bullet Points': ' Present the information as clear bullet points.',
-    'Step-by-Step': ' Organize the response as numbered steps.',
-    'Table': ' Structure the information in a table format.',
-    'JSON': ' Format the response as valid JSON.',
-    'Paragraph': ' Present as well-structured paragraphs.'
+    'Bullet Points': ' Present all information as clear, actionable bullet points.',
+    'Step-by-Step': ' Organize the response as numbered, sequential steps.',
+    'Table': ' Structure all data and information in well-formatted tables.',
+    'JSON': ' Format the entire response as valid, well-structured JSON.',
+    'Paragraph': ' Present as well-organized paragraphs with clear headings.'
   };
   
   if (formatGuidance[format]) {
@@ -656,7 +780,6 @@ function setupImageUpload() {
       reader.onload = function(e) {
         previewImg.src = e.target.result;
         imagePreview.classList.remove('hidden');
-        imagePreview.style.display = 'block';
         
         // Generate prompt from image
         generateImagePrompt(file);
@@ -670,7 +793,6 @@ function setupImageUpload() {
     removeImageBtn.addEventListener('click', function() {
       imageUpload.value = '';
       imagePreview.classList.add('hidden');
-      imagePreview.style.display = 'none';
       previewImg.src = '';
       
       // Clear any generated prompt
@@ -679,7 +801,6 @@ function setupImageUpload() {
       if (promptOut) promptOut.value = '';
       if (generatedSection) {
         generatedSection.classList.add('hidden');
-        generatedSection.style.display = 'none';
       }
     });
   }
@@ -688,46 +809,85 @@ function setupImageUpload() {
 }
 
 function generateImagePrompt(imageFile) {
-  // Simulate image analysis and generate descriptive prompt
   const generatedSection = document.getElementById('generated-section');
   const promptOut = document.getElementById('promptOut');
   
   if (!promptOut || !generatedSection) return;
   
   // Show loading
-  showNotification('Analyzing image and generating prompt...', 'info');
+  showNotification('Analyzing image and generating detailed prompt...', 'info');
   
   setTimeout(() => {
-    // Generate a comprehensive descriptive prompt based on common visual elements
+    // Generate a comprehensive descriptive prompt
     const imagePrompt = generateDetailedImageDescription();
     
     promptOut.value = imagePrompt;
     generatedSection.classList.remove('hidden');
-    generatedSection.style.display = 'block';
     generatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     
-    showNotification('Image prompt generated! Copy and use it to recreate similar images.', 'success');
+    showNotification('Detailed image prompt generated! Copy and use it to recreate similar images.', 'success');
   }, 2000);
 }
 
 function generateDetailedImageDescription() {
-  // Generate a comprehensive template for image description
-  const compositions = ['centered composition', 'rule of thirds', 'symmetrical layout', 'dynamic asymmetry'];
-  const lightings = ['natural daylight', 'golden hour lighting', 'dramatic side lighting', 'soft diffused light', 'cinematic lighting'];
-  const styles = ['photorealistic', 'artistic photography', 'professional portrait', 'documentary style', 'commercial photography'];
-  const colors = ['vibrant color palette', 'muted earth tones', 'high contrast', 'monochromatic scheme', 'warm color temperature'];
-  const details = ['sharp focus', 'shallow depth of field', 'high detail texture', 'crisp clarity', 'professional quality'];
-  const cameras = ['shot with professional camera', '85mm lens perspective', 'wide angle view', 'macro detail shot', 'portrait orientation'];
+  // Generate comprehensive template for professional image description
+  const compositions = [
+    'centered composition with balanced elements',
+    'rule of thirds with strong focal points',
+    'symmetrical layout with perfect balance',
+    'dynamic asymmetrical composition',
+    'leading lines drawing viewer attention'
+  ];
   
-  // Randomly select elements to create a varied description
+  const lightings = [
+    'natural daylight with soft shadows',
+    'golden hour warm lighting',
+    'dramatic side lighting with contrast',
+    'soft diffused studio lighting',
+    'cinematic three-point lighting setup'
+  ];
+  
+  const styles = [
+    'photorealistic professional photography',
+    'commercial product photography',
+    'editorial portrait style',
+    'documentary photojournalism',
+    'fine art photography aesthetic'
+  ];
+  
+  const colors = [
+    'vibrant saturated color palette',
+    'muted earth tone colors',
+    'high contrast black and white',
+    'warm color temperature',
+    'cool blue color grading'
+  ];
+  
+  const technical = [
+    'tack sharp focus throughout',
+    'shallow depth of field with beautiful bokeh',
+    'wide depth of field keeping everything in focus',
+    'perfect exposure with detail in highlights and shadows',
+    'professional color grading and post-processing'
+  ];
+  
+  const cameras = [
+    'shot with professional DSLR camera',
+    '85mm portrait lens with compression',
+    'wide angle 24mm lens perspective',
+    'macro lens for incredible detail',
+    'medium format camera for ultimate quality'
+  ];
+  
+  // Randomly select elements for variety
   const selectedComposition = compositions[Math.floor(Math.random() * compositions.length)];
   const selectedLighting = lightings[Math.floor(Math.random() * lightings.length)];
   const selectedStyle = styles[Math.floor(Math.random() * styles.length)];
   const selectedColors = colors[Math.floor(Math.random() * colors.length)];
-  const selectedDetails = details[Math.floor(Math.random() * details.length)];
+  const selectedTechnical = technical[Math.floor(Math.random() * technical.length)];
   const selectedCamera = cameras[Math.floor(Math.random() * cameras.length)];
   
-  return `A detailed ${selectedStyle} image featuring ${selectedComposition}, ${selectedLighting}, ${selectedColors}, ${selectedDetails}, ${selectedCamera}, professional photography, high resolution, studio quality, award-winning composition, perfect exposure, beautiful bokeh, artistic vision, masterpiece quality, 8k resolution, ultra-sharp focus, pristine clarity, exceptional detail, premium production value`;
+  return `Professional ${selectedStyle} featuring ${selectedComposition}, ${selectedLighting}, ${selectedColors}, ${selectedTechnical}, ${selectedCamera}, award-winning photography, studio quality lighting, perfect composition, exceptional detail, premium production value, masterpiece quality, 8k ultra-high resolution, museum-quality print, trending on photography platforms, editorial excellence, commercial grade perfection`;
 }
 
 // Utility Functions

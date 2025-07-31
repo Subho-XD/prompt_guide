@@ -37,22 +37,93 @@
             <div class="container">
                 <div class="hero">
                     <h1>Internal Prompt Engineering Platform</h1>
-                    <p>Optimize your AI interactions with advanced prompt engineering tools. Generate better prompts, analyze quality, and access the best AI tools - all in one place.</p>
+                    <p>Master the art of AI communication with comprehensive guides, quality analysis tools, and advanced prompt generation capabilities.</p>
                     <button class="btn btn--primary" onclick="navigateToSection('generator')">Start Generating Prompts</button>
                 </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Prompt Generator</h3>
-                        <p>Create optimized prompts with purpose-specific parameters and image-to-prompt conversion.</p>
+
+                <!-- Guide Section 01 -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <span class="section-number">01</span>
+                        <h2>Why Writing Good Prompts Matters</h2>
                     </div>
-                    <div class="feature-card">
-                        <h3>Quality Analysis</h3>
-                        <p>Analyze and improve your prompts with AI-powered quality assessment and scoring.</p>
+                    <div class="guide-content">
+                        <p>Effective prompt engineering is the difference between generic AI responses and powerful, actionable insights. Well-crafted prompts can increase output quality by up to 80%, reduce iterations, and unlock advanced AI capabilities you never knew existed.</p>
+                        <ul class="benefit-list">
+                            <li><strong>Higher Quality Output:</strong> Specific prompts yield specific, useful results</li>
+                            <li><strong>Time Savings:</strong> Reduce back-and-forth iterations with clear instructions</li>
+                            <li><strong>Consistency:</strong> Standardized prompts ensure reliable, repeatable results</li>
+                            <li><strong>Advanced Features:</strong> Unlock specialized AI capabilities through proper prompting</li>
+                        </ul>
                     </div>
-                    <div class="feature-card">
-                        <h3>AI Tools Directory</h3>
-                        <p>Access 25+ curated AI tools across text, image, video, code, and audio generation.</p>
+                </div>
+
+                <!-- Guide Section 02 -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <span class="section-number">02</span>
+                        <h2>Good vs Bad Prompts</h2>
+                    </div>
+                    <div class="comparison-table">
+                        <div class="comparison-header">
+                            <div class="comparison-col bad">❌ Bad Prompt</div>
+                            <div class="comparison-col good">✅ Good Prompt</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-col bad">
+                                <strong>"Write something about marketing"</strong>
+                                <p>Vague, no context, unclear deliverable</p>
+                            </div>
+                            <div class="comparison-col good">
+                                <strong>"Act as a senior marketing strategist and create a comprehensive social media campaign for a B2B SaaS company launching a new project management tool. Include 5 LinkedIn posts, target audience analysis, and key messaging framework."</strong>
+                                <p>Specific role, clear context, defined deliverables</p>
+                            </div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-col bad">
+                                <strong>"Analyze this data"</strong>
+                                <p>No format specified, unclear objectives</p>
+                            </div>
+                            <div class="comparison-col good">
+                                <strong>"Act as a data scientist and analyze the attached sales data CSV. Provide: 1) Executive summary, 2) Top 3 trends, 3) Seasonal patterns, 4) Actionable recommendations. Format as a business report with charts suggestions."</strong>
+                                <p>Clear role, specific analysis points, format specified</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide Section 03 -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <span class="section-number">03</span>
+                        <h2>Prompt Library</h2>
+                    </div>
+                    <div class="prompt-library">
+                        <div class="prompt-category">
+                            <h4>📋 Project Management (18 Expert Prompts)</h4>
+                            <div class="prompt-grid" id="project-prompts">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="prompt-category">
+                            <h4>🔧 Cross-Functional (12 Additional Prompts)</h4>
+                            <div class="prompt-grid" id="cross-functional-prompts">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide Section 04 -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <span class="section-number">04</span>
+                        <h2>Best-Practice Cheat-Sheet</h2>
+                    </div>
+                    <div class="best-practices">
+                        <div class="practice-grid" id="best-practices-grid">
+                            <!-- Populated by JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +133,7 @@
         <section id="tools" class="section hidden">
             <div class="container">
                 <h1>Best AI Tools</h1>
-                <p>Curated collection of 25 powerful AI tools organized by category</p>
+                <p>Curated collection of 25 powerful AI tools organized by category with ratings and direct links</p>
                 
                 <div id="toolsContainer" class="tools-container">
                     <!-- Tools will be populated by JavaScript -->
@@ -74,7 +145,7 @@
         <section id="checker" class="section hidden">
             <div class="container">
                 <h1>Prompt Checker</h1>
-                <p>Analyze and improve your prompts with detailed quality assessment</p>
+                <p>Analyze and improve your prompts with detailed quality assessment and improvement suggestions</p>
                 
                 <div class="checker-container">
                     <div class="card">
