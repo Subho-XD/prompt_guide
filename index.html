@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structured Guide to Prompt Engineering for Project Managers</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Title Section -->
+        <section class="title-section">
+            <div class="container">
+                <h1 class="main-title">Structured Guide to Prompt Engineering for Project Managers</h1>
+                <div class="takeaway-card">
+                    <h2>Main Takeaway</h2>
+                    <p class="takeaway-text">Well-crafted prompts are the difference between AI that feels like a scatter-brained intern and AI that behaves like a seasoned project-management assistant. Adopt a clear structure (Goal + Context + Persona + Format) and you unlock reliable timelines, sharper stakeholder updates, and quicker decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Writing Good Prompts Matters -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Why Writing Good Prompts Matters</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">20-30%</div>
+                        <p>Project managers who use AI for scheduling and risk analysis report 20-30% faster delivery and cost savings</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50%+</div>
+                        <p>Over 50% of PMs say clearer AI-generated communication improved team alignment</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-highlight">⚠️</div>
+                        <p>Poorly framed requests (vague, no context) produce generic, sometimes inaccurate outputs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anatomy of a High-Impact Prompt -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Anatomy of a High-Impact Prompt</h2>
+                <div class="anatomy-table-container">
+                    <table class="anatomy-table">
+                        <thead>
+                            <tr>
+                                <th>Element</th>
+                                <th>Purpose</th>
+                                <th>Key Questions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Goal / Task</strong></td>
+                                <td>Tells the model what to do</td>
+                                <td>What deliverable do I need?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Context</strong></td>
+                                <td>Supplies background, constraints</td>
+                                <td>Which project, timeline, data?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Persona / Role</strong></td>
+                                <td>Sets voice & expertise level</td>
+                                <td>Should the AI act as a PM, analyst, Scrum Master?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Format</strong></td>
+                                <td>Dictates structure & length</td>
+                                <td>Table, email, bullet list?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="template-box">
+                    <h3>Template Formula</h3>
+                    <p><strong>Persona + Task + Context + Format</strong></p>
+                    <div class="example-prompt">
+                        <em>"You are a senior project manager. Draft a one-page risk register for a 12-week SaaS rollout. Output as a markdown table."</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Good vs Bad Prompts -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Good vs. Bad Prompts</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="bad-prompt">
+                            <h4>❌ Bad</h4>
+                            <p class="prompt-text">"Write a project update."</p>
+                            <p class="why-text"><strong>Why it's bad:</strong> Vague, no audience, no key facts</p>
+                        </div>
+                        <div class="good-prompt">
+                            <h4>✅ Good</h4>
+                            <p class="prompt-text">"Write a concise internal project-update email on our website redesign: UI/UX phase finished, dev started, ETA six weeks. Flag blockers, request feedback on mock-ups."</p>
+                            <p class="why-text"><strong>Why it's good:</strong> Adds goal, audience, context, tasks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <div class="bad-prompt">
+                            <h4>❌ Bad</h4>
+                            <p class="prompt-text">"Help me with project risks."</p>
+                            <p class="why-text"><strong>Why it's bad:</strong> Undefined scope</p>
+                        </div>
+                        <div class="good-prompt">
+                            <h4>✅ Good</h4>
+                            <p class="prompt-text">"Act as a risk analyst. List the top 5 risks for a construction project breaking ground next month, rate probability & impact, suggest mitigations. Output in table form."</p>
+                            <p class="why-text"><strong>Why it's good:</strong> Precise domain, deliverable, format</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <div class="bad-prompt">
+                            <h4>❌ Bad</h4>
+                            <p class="prompt-text">"Make a schedule."</p>
+                            <p class="why-text"><strong>Why it's bad:</strong> No constraints</p>
+                        </div>
+                        <div class="good-prompt">
+                            <h4>✅ Good</h4>
+                            <p class="prompt-text">"Create a Gantt-ready timeline (phases, tasks, start/end dates, owners) for a six-month e-commerce launch."</p>
+                            <p class="why-text"><strong>Why it's good:</strong> Explicit structure & duration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eighteen Tested Prompts -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Eighteen Tested Prompts for Project Managers</h2>
+                <div class="prompts-table-container">
+                    <table class="prompts-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Prompt</th>
+                                <th>Output</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.</td>
+                                <td>Ready-to-import timeline</td>
+                                <td><span class="category schedules">Schedules & Timelines</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.</td>
+                                <td>CSV-style Gantt data</td>
+                                <td><span class="category schedules">Schedules & Timelines</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarise in a table.</td>
+                                <td>Dependency map</td>
+                                <td><span class="category schedules">Schedules & Timelines</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).</td>
+                                <td>Focused agenda</td>
+                                <td><span class="category communication">Communication</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.</td>
+                                <td>Professional bad-news note</td>
+                                <td><span class="category communication">Communication</span></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Write a milestone update for executives: current status, wins, next steps, risks.</td>
+                                <td>Executive-level summary</td>
+                                <td><span class="category communication">Communication</span></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.</td>
+                                <td>Resource breakdown</td>
+                                <td><span class="category resource">Resource Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.</td>
+                                <td>Capacity sheet</td>
+                                <td><span class="category resource">Resource Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Given this workload data [paste], highlight bottlenecks & suggest reallocation.</td>
+                                <td>Conflict alert & fixes</td>
+                                <td><span class="category resource">Resource Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.</td>
+                                <td>Budget table</td>
+                                <td><span class="category budget">Budget Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.</td>
+                                <td>Variance dashboard</td>
+                                <td><span class="category budget">Budget Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Suggest 5 cost-saving ideas for a $X project; estimate savings.</td>
+                                <td>Savings roadmap</td>
+                                <td><span class="category budget">Budget Mgmt</span></td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.</td>
+                                <td>Root-cause tree</td>
+                                <td><span class="category problem">Problem-Solving</span></td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.</td>
+                                <td>Comparative matrix</td>
+                                <td><span class="category problem">Problem-Solving</span></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>Generate three alternative solutions to [challenge] with pros/cons, recommend best.</td>
+                                <td>Option list</td>
+                                <td><span class="category problem">Problem-Solving</span></td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).</td>
+                                <td>QMP template</td>
+                                <td><span class="category quality">Quality</span></td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].</td>
+                                <td>Test-plan doc</td>
+                                <td><span class="category quality">Quality</span></td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them.</td>
+                                <td>KPI set</td>
+                                <td><span class="category quality">Quality</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Best Practices Cheat-Sheet</h2>
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <h4>Be Specific, Descriptive & Complete</h4>
+                        <p>Vague inputs yield vague outputs</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Frame the Role</h4>
+                        <p>"Act as a senior PM…" boosts relevance</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Show Desired Format</h4>
+                        <p>Bullet list, table, JSON, etc.</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Iterate & Refine</h4>
+                        <p>Treat AI like a junior analyst; ask for re-writes and deeper dives</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Avoid Negatives & Ambiguity</h4>
+                        <p>State what to do, not just what not to do</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Quote Sources or Supply Data</h4>
+                        <p>Reduces hallucinations and anchors output</p>
+                    </div>
+                    <div class="practice-card">
+                        <h4>Break Large Requests into Steps</h4>
+                        <p>Multiple, smaller prompts outperform one giant prompt</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Pitfalls -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Common Bad-Prompt Pitfalls</h2>
+                <div class="pitfalls-list">
+                    <div class="pitfall-item">
+                        <div class="pitfall-icon">⚠️</div>
+                        <div class="pitfall-content">
+                            <h4>"Write something about X"</h4>
+                            <p>Lacks scope and deliverable</p>
+                        </div>
+                    </div>
+                    <div class="pitfall-item">
+                        <div class="pitfall-icon">⚠️</div>
+                        <div class="pitfall-content">
+                            <h4>Yes/No requests for nuanced topics</h4>
+                            <p>Forces shallow answers</p>
+                        </div>
+                    </div>
+                    <div class="pitfall-item">
+                        <div class="pitfall-icon">⚠️</div>
+                        <div class="pitfall-content">
+                            <h4>Missing timeframe ("soon", "later")</h4>
+                            <p>AI can't infer deadlines</p>
+                        </div>
+                    </div>
+                    <div class="pitfall-item">
+                        <div class="pitfall-icon">⚠️</div>
+                        <div class="pitfall-content">
+                            <h4>Technical jargon with no audience cue</h4>
+                            <p>Confuses tone and depth</p>
+                        </div>
+                    </div>
+                    <div class="pitfall-item">
+                        <div class="pitfall-icon">⚠️</div>
+                        <div class="pitfall-content">
+                            <h4>No output format</h4>
+                            <p>Leaves you reformatting manually</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="content-section">
+            <div class="container">
+                <h2>Quick Reference</h2>
+                <div class="reference-grid">
+                    <div class="reference-column do">
+                        <h3>✅ Do</h3>
+                        <ul>
+                            <li>Start with Goal + Context + Persona + Format</li>
+                            <li>Provide data, constraints, and examples</li>
+                            <li>Ask for structured outputs (tables, JSON)</li>
+                            <li>Iterate: "Now expand section 2…"</li>
+                        </ul>
+                    </div>
+                    <div class="reference-column dont">
+                        <h3>❌ Don't</h3>
+                        <ul>
+                            <li>Assume the model knows your project background</li>
+                            <li>Use "etc." or "something like that"</li>
+                            <li>Accept the first answer without follow-ups</li>
+                            <li>Pack multiple unrelated tasks in one prompt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
