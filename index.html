@@ -3,375 +3,679 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Structured Guide to Prompt Engineering for Project Managers</title>
+    <title>PromptCraft Portal - Clean AI Tools & Prompt Engineering</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css">
 </head>
 <body>
-    <div class="presentation-container">
-        <!-- Title Section -->
-        <section class="title-section">
-            <div class="container">
-                <h1 class="main-title">Structured Guide to Prompt Engineering for Project Managers</h1>
-                <div class="takeaway-card">
-                    <h2>Main Takeaway</h2>
-                    <p class="takeaway-text">Well-crafted prompts are the difference between AI that feels like a scatter-brained intern and AI that behaves like a seasoned project-management assistant. Adopt a clear structure (Goal + Context + Persona + Format) and you unlock reliable timelines, sharper stakeholder updates, and quicker decisions.</p>
+    <!-- Navigation Header -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
                 </div>
+                <span class="brand-text">PromptCraft</span>
             </div>
-        </section>
-
-        <!-- Why Writing Good Prompts Matters -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Why Writing Good Prompts Matters</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">20-30%</div>
-                        <p>Project managers who use AI for scheduling and risk analysis report 20-30% faster delivery and cost savings</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">50%+</div>
-                        <p>Over 50% of PMs say clearer AI-generated communication improved team alignment</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-highlight">⚠️</div>
-                        <p>Poorly framed requests (vague, no context) produce generic, sometimes inaccurate outputs</p>
-                    </div>
-                </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a href="#ai-tools" class="nav-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <span>Best AI Tools</span>
+                </a>
+                <a href="#checker" class="nav-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="21 21l-4.35-4.35"/>
+                    </svg>
+                    <span>Prompt Checker</span>
+                </a>
+                <a href="#generator" class="nav-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span>Prompt Generator</span>
+                </a>
             </div>
-        </section>
-
-        <!-- Anatomy of a High-Impact Prompt -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Anatomy of a High-Impact Prompt</h2>
-                <div class="anatomy-table-container">
-                    <table class="anatomy-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Purpose</th>
-                                <th>Key Questions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Goal / Task</strong></td>
-                                <td>Tells the model what to do</td>
-                                <td>What deliverable do I need?</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Context</strong></td>
-                                <td>Supplies background, constraints</td>
-                                <td>Which project, timeline, data?</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Persona / Role</strong></td>
-                                <td>Sets voice & expertise level</td>
-                                <td>Should the AI act as a PM, analyst, Scrum Master?</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Format</strong></td>
-                                <td>Dictates structure & length</td>
-                                <td>Table, email, bullet list?</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="template-box">
-                    <h3>Template Formula</h3>
-                    <p><strong>Persona + Task + Context + Format</strong></p>
-                    <div class="example-prompt">
-                        <em>"You are a senior project manager. Draft a one-page risk register for a 12-week SaaS rollout. Output as a markdown table."</em>
-                    </div>
-                </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- Good vs Bad Prompts -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Good vs. Bad Prompts</h2>
-                <div class="comparison-grid">
-                    <div class="comparison-card">
-                        <div class="bad-prompt">
-                            <h4>❌ Bad</h4>
-                            <p class="prompt-text">"Write a project update."</p>
-                            <p class="why-text"><strong>Why it's bad:</strong> Vague, no audience, no key facts</p>
+    <main class="app-container">
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Master AI with Perfect Prompts</h1>
+                        <p class="hero-description">Transform your AI interactions with proven prompt engineering techniques. Generate better outputs, save time, and unlock the full potential of AI tools.</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number">300%</span>
+                                <span class="stat-label">Better Results</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">18</span>
+                                <span class="stat-label">Tested Prompts</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">AI Tools</span>
+                            </div>
                         </div>
-                        <div class="good-prompt">
-                            <h4>✅ Good</h4>
-                            <p class="prompt-text">"Write a concise internal project-update email on our website redesign: UI/UX phase finished, dev started, ETA six weeks. Flag blockers, request feedback on mock-ups."</p>
-                            <p class="why-text"><strong>Why it's good:</strong> Adds goal, audience, context, tasks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Benefits -->
+            <div class="benefits-section">
+                <div class="container">
+                    <h2 class="section-title">Why Prompt Engineering Matters</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                                </svg>
+                            </div>
+                            <h3>20-30% Faster Delivery</h3>
+                            <p>Well-structured prompts reduce back-and-forth iterations and generate more accurate results on the first try.</p>
                         </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <h3>50%+ Better Team Collaboration</h3>
+                            <p>Standardized prompt formats improve communication and ensure consistent AI outputs across teams.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <path d="M21 12c.552 0 1-.448 1-1V8c0-.552-.448-1-1-1h-3c-.552 0-1-.448-1-1V3c0-.552-.448-1-1-1H8c-.552 0-1 .448-1 1v3c0 .552-.448 1-1 1H3c-.552 0-1 .448-1 1v3c0 .552.448 1 1 1h3c.552 0 1 .448 1 1v3c0 .552.448 1 1 1h3c.552 0 1 .448 1 1v3c0 .552.448 1 1 1h3c.552 0 1-.448 1-1v-3c0-.552.448-1 1-1h3z"/>
+                                </svg>
+                            </div>
+                            <h3>Professional Quality Output</h3>
+                            <p>Structured prompts eliminate ambiguity and produce professional-grade results consistently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Engineering Guide -->
+            <div class="guide-section">
+                <div class="container">
+                    <h2 class="section-title">Complete Prompt Engineering Framework</h2>
+                    <div class="framework-grid">
+                        <div class="framework-card">
+                            <div class="framework-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+                                </svg>
+                            </div>
+                            <h3>Objective</h3>
+                            <p>What is the specific goal?</p>
+                            <span class="framework-example">Define the exact output you want from the AI system</span>
+                        </div>
+                        <div class="framework-card">
+                            <div class="framework-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <h3>Context</h3>
+                            <p>What background information is needed?</p>
+                            <span class="framework-example">Provide relevant details, constraints, and environment</span>
+                        </div>
+                        <div class="framework-card">
+                            <div class="framework-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <h3>Persona</h3>
+                            <p>What role should the AI assume?</p>
+                            <span class="framework-example">Act as an expert, consultant, or specialist in the domain</span>
+                        </div>
+                        <div class="framework-card">
+                            <div class="framework-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <rect x="7" y="7" width="3" height="9"/>
+                                    <rect x="14" y="7" width="3" height="5"/>
+                                </svg>
+                            </div>
+                            <h3>Format</h3>
+                            <p>How should the output be structured?</p>
+                            <span class="framework-example">Table, list, report, email, or custom format</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18 Tested Prompts -->
+            <div class="prompts-section">
+                <div class="container">
+                    <h2 class="section-title">18 Proven Prompt Templates</h2>
+                    <div class="prompts-categories">
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                                Schedules & Timelines
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Timeline Template</span>
+                                        <button class="copy-prompt-btn" data-prompt="Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Gantt Structure</span>
+                                        <button class="copy-prompt-btn" data-prompt="Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarize in a table.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Dependencies</span>
+                                        <button class="copy-prompt-btn" data-prompt="Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarize in a table.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                Communication
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Meeting Agenda</span>
+                                        <button class="copy-prompt-btn" data-prompt="Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Delay Communication</span>
+                                        <button class="copy-prompt-btn" data-prompt="Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Write a milestone update for executives: current status, wins, next steps, risks.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Executive Update</span>
+                                        <button class="copy-prompt-btn" data-prompt="Write a milestone update for executives: current status, wins, next steps, risks.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                Resource Management
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Resource Planning</span>
+                                        <button class="copy-prompt-btn" data-prompt="Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Capacity Planning</span>
+                                        <button class="copy-prompt-btn" data-prompt="Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Given this workload data [paste], highlight bottlenecks & suggest reallocation.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Bottleneck Analysis</span>
+                                        <button class="copy-prompt-btn" data-prompt="Given this workload data [paste], highlight bottlenecks & suggest reallocation.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                                Budget Management
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Budget Planning</span>
+                                        <button class="copy-prompt-btn" data-prompt="Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Variance Report</span>
+                                        <button class="copy-prompt-btn" data-prompt="Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Suggest 5 cost-saving ideas for a $X project; estimate savings.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Cost Optimization</span>
+                                        <button class="copy-prompt-btn" data-prompt="Suggest 5 cost-saving ideas for a $X project; estimate savings.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                                </svg>
+                                Problem Solving
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Root Cause Analysis</span>
+                                        <button class="copy-prompt-btn" data-prompt="Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Decision Matrix</span>
+                                        <button class="copy-prompt-btn" data-prompt="Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Generate three alternative solutions to [challenge] with pros/cons, recommend best.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Solution Generation</span>
+                                        <button class="copy-prompt-btn" data-prompt="Generate three alternative solutions to [challenge] with pros/cons, recommend best.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h3 class="category-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <path d="M12 2a10 10 0 1 0 10 10"/>
+                                </svg>
+                                Quality Assurance
+                            </h3>
+                            <div class="prompts-grid">
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Quality Management</span>
+                                        <button class="copy-prompt-btn" data-prompt="Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Test Planning</span>
+                                        <button class="copy-prompt-btn" data-prompt="Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="prompt-card">
+                                    <p class="prompt-text">Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them.</p>
+                                    <div class="prompt-footer">
+                                        <span class="prompt-tag">Quality KPIs</span>
+                                        <button class="copy-prompt-btn" data-prompt="Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them.">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="practices-section">
+                <div class="container">
+                    <h2 class="section-title">Best Practices</h2>
+                    <div class="practices-grid">
+                        <div class="practices-card success">
+                            <h3>✅ Do This</h3>
+                            <ul>
+                                <li>Start with role definition ("Act as a...")</li>
+                                <li>Provide specific context and constraints</li>
+                                <li>Request precise output formats</li>
+                                <li>Include examples when helpful</li>
+                                <li>Use clear, structured language</li>
+                                <li>Test and iterate your prompts</li>
+                            </ul>
+                        </div>
+                        <div class="practices-card error">
+                            <h3>❌ Avoid This</h3>
+                            <ul>
+                                <li>Vague requests ("improve this", "make it better")</li>
+                                <li>Missing context or background</li>
+                                <li>Overly complex single requests</li>
+                                <li>Assuming AI knows your specific domain</li>
+                                <li>Undefined output requirements</li>
+                                <li>No feedback or iteration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Tools Section -->
+        <section id="ai-tools" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Best AI Tools 2025</h1>
+                    <p>Curated collection of the most powerful AI tools across different categories</p>
+                </div>
+                
+                <div class="tools-categories" id="tools-container">
+                    <!-- Tools will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompt Checker Section -->
+        <section id="checker" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Prompt Checker</h1>
+                    <p>Analyze and improve your prompts with AI-powered quality assessment</p>
+                </div>
+                
+                <div class="checker-container">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="prompt-input" class="form-label">Enter your prompt for analysis</label>
+                            <textarea 
+                                id="prompt-input" 
+                                class="form-control" 
+                                placeholder="Paste your AI prompt here for detailed analysis and improvement suggestions..."
+                                rows="6"
+                            ></textarea>
+                        </div>
+                        <button id="analyze-btn" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="21 21l-4.35-4.35"/>
+                            </svg>
+                            <span>Analyze Prompt</span>
+                        </button>
                     </div>
                     
-                    <div class="comparison-card">
-                        <div class="bad-prompt">
-                            <h4>❌ Bad</h4>
-                            <p class="prompt-text">"Help me with project risks."</p>
-                            <p class="why-text"><strong>Why it's bad:</strong> Undefined scope</p>
+                    <div id="analysis-results" class="results-section hidden">
+                        <div class="results-header">
+                            <h3>Analysis Results</h3>
+                            <div id="overall-score" class="score-badge"></div>
                         </div>
-                        <div class="good-prompt">
-                            <h4>✅ Good</h4>
-                            <p class="prompt-text">"Act as a risk analyst. List the top 5 risks for a construction project breaking ground next month, rate probability & impact, suggest mitigations. Output in table form."</p>
-                            <p class="why-text"><strong>Why it's good:</strong> Precise domain, deliverable, format</p>
+                        <div id="results-content" class="results-content">
+                            <!-- Results will be populated by JavaScript -->
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompt Generator Section -->
+        <section id="generator" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Prompt Generator</h1>
+                    <p>Create optimized, purpose-specific prompts for better AI results</p>
+                </div>
+                
+                <div class="generator-container">
+                    <div class="generator-form">
+                        <div class="form-group">
+                            <label for="basic-prompt" class="form-label">Basic Prompt</label>
+                            <textarea 
+                                id="basic-prompt" 
+                                class="form-control" 
+                                placeholder="Describe what you want the AI to do..."
+                                rows="4"
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="purpose-select" class="form-label">Purpose</label>
+                                <select id="purpose-select" class="form-control">
+                                    <option value="General Use">General Use</option>
+                                    <option value="Image Generation">Image Generation</option>
+                                    <option value="Report Analysis">Report Analysis</option>
+                                    <option value="Data Analysis">Data Analysis</option>
+                                    <option value="Code Generation">Code Generation</option>
+                                    <option value="Content Creation">Content Creation</option>
+                                    <option value="Conversational AI">Conversational AI</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ai-model" class="form-label">AI Model</label>
+                                <select id="ai-model" class="form-control">
+                                    <option value="General">General</option>
+                                    <option value="ChatGPT">ChatGPT</option>
+                                    <option value="Gemini">Gemini</option>
+                                    <option value="Claude">Claude</option>
+                                    <option value="Flux">Flux</option>
+                                    <option value="Midjourney">Midjourney</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="persona-select" class="form-label">Persona</label>
+                                <select id="persona-select" class="form-control">
+                                    <option value="Professional">Professional</option>
+                                    <option value="Creative">Creative</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Academic">Academic</option>
+                                    <option value="Friendly">Friendly</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tone-select" class="form-label">Tone</label>
+                                <select id="tone-select" class="form-control">
+                                    <option value="Formal">Formal</option>
+                                    <option value="Casual">Casual</option>
+                                    <option value="Persuasive">Persuasive</option>
+                                    <option value="Informative">Informative</option>
+                                    <option value="Creative">Creative</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="output-format" class="form-label">Output Format</label>
+                            <select id="output-format" class="form-control">
+                                <option value="Paragraph">Paragraph</option>
+                                <option value="Bullet Points">Bullet Points</option>
+                                <option value="Numbered List">Numbered List</option>
+                                <option value="Table">Table</option>
+                                <option value="JSON">JSON</option>
+                            </select>
+                        </div>
+                        
+                        <button id="generate-btn" class="btn btn-primary btn-full-width">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Generate Enhanced Prompt
+                        </button>
                     </div>
                     
-                    <div class="comparison-card">
-                        <div class="bad-prompt">
-                            <h4>❌ Bad</h4>
-                            <p class="prompt-text">"Make a schedule."</p>
-                            <p class="why-text"><strong>Why it's bad:</strong> No constraints</p>
+                    <div id="generated-section" class="generated-section hidden">
+                        <div class="generated-header">
+                            <h3>Generated Prompt</h3>
+                            <button id="copy-generated-btn" class="btn btn-secondary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                </svg>
+                                Copy
+                            </button>
                         </div>
-                        <div class="good-prompt">
-                            <h4>✅ Good</h4>
-                            <p class="prompt-text">"Create a Gantt-ready timeline (phases, tasks, start/end dates, owners) for a six-month e-commerce launch."</p>
-                            <p class="why-text"><strong>Why it's good:</strong> Explicit structure & duration</p>
-                        </div>
+                        <textarea 
+                            id="generated-prompt" 
+                            class="form-control generated-prompt" 
+                            readonly 
+                            rows="8"
+                        ></textarea>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Eighteen Tested Prompts -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Eighteen Tested Prompts for Project Managers</h2>
-                <div class="prompts-table-container">
-                    <table class="prompts-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Prompt</th>
-                                <th>Output</th>
-                                <th>Category</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Act as a project manager and create a detailed project timeline for a [software/marketing] project. Break it into phases, add dates & owners in a table.</td>
-                                <td>Ready-to-import timeline</td>
-                                <td><span class="category schedules">Schedules & Timelines</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Create a Gantt-chart structure for a [website launch] including tasks, dependencies, durations.</td>
-                                <td>CSV-style Gantt data</td>
-                                <td><span class="category schedules">Schedules & Timelines</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Identify task dependencies (FS, SS, FF, SF) for a [marketing campaign] and summarise in a table.</td>
-                                <td>Dependency map</td>
-                                <td><span class="category schedules">Schedules & Timelines</span></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Generate a meeting agenda for our weekly project sync (objectives, time boxes, owners).</td>
-                                <td>Focused agenda</td>
-                                <td><span class="category communication">Communication</span></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Draft an email to inform stakeholders of a two-week delay, explain cause, propose mitigation, supply new timeline.</td>
-                                <td>Professional bad-news note</td>
-                                <td><span class="category communication">Communication</span></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Write a milestone update for executives: current status, wins, next steps, risks.</td>
-                                <td>Executive-level summary</td>
-                                <td><span class="category communication">Communication</span></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Analyse resource needs by phase for a [type] project; list roles, hours, tools, and optimal allocation.</td>
-                                <td>Resource breakdown</td>
-                                <td><span class="category resource">Resource Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Generate a team-capacity planning template (names, weekly hours, tasks, % load) and flag over-allocations.</td>
-                                <td>Capacity sheet</td>
-                                <td><span class="category resource">Resource Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Given this workload data [paste], highlight bottlenecks & suggest reallocation.</td>
-                                <td>Conflict alert & fixes</td>
-                                <td><span class="category resource">Resource Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Create a detailed budget for a [mobile-app] project (labour, materials, software, contingency) per phase.</td>
-                                <td>Budget table</td>
-                                <td><span class="category budget">Budget Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Produce a variance report: planned vs actual spend on a $X budget; show % variance & corrective actions.</td>
-                                <td>Variance dashboard</td>
-                                <td><span class="category budget">Budget Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>Suggest 5 cost-saving ideas for a $X project; estimate savings.</td>
-                                <td>Savings roadmap</td>
-                                <td><span class="category budget">Budget Mgmt</span></td>
-                            </tr>
-                            <tr>
-                                <td>13</td>
-                                <td>Run a 5 Whys root-cause analysis on [issue]. Output steps & fixes.</td>
-                                <td>Root-cause tree</td>
-                                <td><span class="category problem">Problem-Solving</span></td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td>Build a decision matrix (cost, time, risk, impact) to choose between options A, B, C.</td>
-                                <td>Comparative matrix</td>
-                                <td><span class="category problem">Problem-Solving</span></td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>Generate three alternative solutions to [challenge] with pros/cons, recommend best.</td>
-                                <td>Option list</td>
-                                <td><span class="category problem">Problem-Solving</span></td>
-                            </tr>
-                            <tr>
-                                <td>16</td>
-                                <td>Draft a Quality Management Plan for a [domain] project (objectives, standards, QC measures, metrics).</td>
-                                <td>QMP template</td>
-                                <td><span class="category quality">Quality</span></td>
-                            </tr>
-                            <tr>
-                                <td>17</td>
-                                <td>Create a full test plan (objectives, cases, pass/fail criteria, schedule, roles) for [product].</td>
-                                <td>Test-plan doc</td>
-                                <td><span class="category quality">Quality</span></td>
-                            </tr>
-                            <tr>
-                                <td>18</td>
-                                <td>Define 5 key quality KPIs and acceptance criteria for a [software] release; explain how to track them.</td>
-                                <td>KPI set</td>
-                                <td><span class="category quality">Quality</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Best Practices -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Best Practices Cheat-Sheet</h2>
-                <div class="practices-grid">
-                    <div class="practice-card">
-                        <h4>Be Specific, Descriptive & Complete</h4>
-                        <p>Vague inputs yield vague outputs</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Frame the Role</h4>
-                        <p>"Act as a senior PM…" boosts relevance</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Show Desired Format</h4>
-                        <p>Bullet list, table, JSON, etc.</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Iterate & Refine</h4>
-                        <p>Treat AI like a junior analyst; ask for re-writes and deeper dives</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Avoid Negatives & Ambiguity</h4>
-                        <p>State what to do, not just what not to do</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Quote Sources or Supply Data</h4>
-                        <p>Reduces hallucinations and anchors output</p>
-                    </div>
-                    <div class="practice-card">
-                        <h4>Break Large Requests into Steps</h4>
-                        <p>Multiple, smaller prompts outperform one giant prompt</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Common Pitfalls -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Common Bad-Prompt Pitfalls</h2>
-                <div class="pitfalls-list">
-                    <div class="pitfall-item">
-                        <div class="pitfall-icon">⚠️</div>
-                        <div class="pitfall-content">
-                            <h4>"Write something about X"</h4>
-                            <p>Lacks scope and deliverable</p>
-                        </div>
-                    </div>
-                    <div class="pitfall-item">
-                        <div class="pitfall-icon">⚠️</div>
-                        <div class="pitfall-content">
-                            <h4>Yes/No requests for nuanced topics</h4>
-                            <p>Forces shallow answers</p>
-                        </div>
-                    </div>
-                    <div class="pitfall-item">
-                        <div class="pitfall-icon">⚠️</div>
-                        <div class="pitfall-content">
-                            <h4>Missing timeframe ("soon", "later")</h4>
-                            <p>AI can't infer deadlines</p>
-                        </div>
-                    </div>
-                    <div class="pitfall-item">
-                        <div class="pitfall-icon">⚠️</div>
-                        <div class="pitfall-content">
-                            <h4>Technical jargon with no audience cue</h4>
-                            <p>Confuses tone and depth</p>
-                        </div>
-                    </div>
-                    <div class="pitfall-item">
-                        <div class="pitfall-icon">⚠️</div>
-                        <div class="pitfall-content">
-                            <h4>No output format</h4>
-                            <p>Leaves you reformatting manually</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Reference -->
-        <section class="content-section">
-            <div class="container">
-                <h2>Quick Reference</h2>
-                <div class="reference-grid">
-                    <div class="reference-column do">
-                        <h3>✅ Do</h3>
-                        <ul>
-                            <li>Start with Goal + Context + Persona + Format</li>
-                            <li>Provide data, constraints, and examples</li>
-                            <li>Ask for structured outputs (tables, JSON)</li>
-                            <li>Iterate: "Now expand section 2…"</li>
-                        </ul>
-                    </div>
-                    <div class="reference-column dont">
-                        <h3>❌ Don't</h3>
-                        <ul>
-                            <li>Assume the model knows your project background</li>
-                            <li>Use "etc." or "something like that"</li>
-                            <li>Accept the first answer without follow-ups</li>
-                            <li>Pack multiple unrelated tasks in one prompt</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    </main>
 
     <script src="app.js"></script>
 </body>
