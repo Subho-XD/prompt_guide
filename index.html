@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vicky.ai - Internal Prompt Engineering Platform</title>
+    <title>vicky.ai - Enhanced Internal Prompt Engineering Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="#home" class="nav-link active" data-section="home">Home</a>
-                    <a href="#tools" class="nav-link" data-section="tools">Best AI Tools</a>
+                    <a href="#tools" class="nav-link" data-section="tools">AI Tools</a>
                     <a href="#checker" class="nav-link" data-section="checker">Prompt Checker</a>
                     <a href="#generator" class="nav-link" data-section="generator">Prompt Generator</a>
                 </div>
@@ -36,8 +36,8 @@
         <section id="home" class="section">
             <div class="container">
                 <div class="hero">
-                    <h1>Internal Prompt Engineering Platform</h1>
-                    <p>Master the art of AI communication with comprehensive guides, quality analysis tools, and advanced prompt generation capabilities.</p>
+                    <h1>Enhanced Prompt Engineering Platform</h1>
+                    <p>Master AI communication with comprehensive guides, intelligent quality analysis, advanced prompt generation, and custom tool management.</p>
                     <button class="btn btn--primary" onclick="navigateToSection('generator')">Start Generating Prompts</button>
                 </div>
 
@@ -48,7 +48,7 @@
                         <h2>Why Writing Good Prompts Matters</h2>
                     </div>
                     <div class="guide-content">
-                        <p>Effective prompt engineering is the difference between generic AI responses and powerful, actionable insights. Well-crafted prompts can increase output quality by up to 80%, reduce iterations, and unlock advanced AI capabilities you never knew existed.</p>
+                        <p>Effective prompt engineering is the difference between generic AI responses and powerful, actionable insights. Well-crafted prompts can increase output quality by up to 80%, reduce iterations, and unlock advanced AI capabilities.</p>
                         <ul class="benefit-list">
                             <li><strong>Higher Quality Output:</strong> Specific prompts yield specific, useful results</li>
                             <li><strong>Time Savings:</strong> Reduce back-and-forth iterations with clear instructions</li>
@@ -77,16 +77,6 @@
                             <div class="comparison-col good">
                                 <strong>"Act as a senior marketing strategist and create a comprehensive social media campaign for a B2B SaaS company launching a new project management tool. Include 5 LinkedIn posts, target audience analysis, and key messaging framework."</strong>
                                 <p>Specific role, clear context, defined deliverables</p>
-                            </div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-col bad">
-                                <strong>"Analyze this data"</strong>
-                                <p>No format specified, unclear objectives</p>
-                            </div>
-                            <div class="comparison-col good">
-                                <strong>"Act as a data scientist and analyze the attached sales data CSV. Provide: 1) Executive summary, 2) Top 3 trends, 3) Seasonal patterns, 4) Actionable recommendations. Format as a business report with charts suggestions."</strong>
-                                <p>Clear role, specific analysis points, format specified</p>
                             </div>
                         </div>
                     </div>
@@ -129,11 +119,42 @@
             </div>
         </section>
 
-        <!-- Best AI Tools Section -->
+        <!-- Enhanced AI Tools Section -->
         <section id="tools" class="section hidden">
             <div class="container">
-                <h1>Best AI Tools</h1>
-                <p>Curated collection of 25 powerful AI tools organized by category with ratings and direct links</p>
+                <div class="tools-header">
+                    <div>
+                        <h1>AI Tools Collection</h1>
+                        <p>Curated AI tools with custom management and weekly auto-updates</p>
+                        <div class="last-updated">
+                            <span class="status status--info" id="last-updated-badge">Last updated: <span id="last-updated-time">Loading...</span></span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary" onclick="showAddToolModal()">Add Custom Tool</button>
+                </div>
+                
+                <!-- Tools Controls -->
+                <div class="tools-controls">
+                    <div class="search-container">
+                        <input type="text" id="tools-search" class="form-control search-input" placeholder="Search tools...">
+                    </div>
+                    <div class="filter-container">
+                        <select id="category-filter" class="form-control">
+                            <option value="">All Categories</option>
+                            <option value="Conversational AI">Conversational AI</option>
+                            <option value="Image Generation">Image Generation</option>
+                            <option value="Video Generation">Video Generation</option>
+                            <option value="Data Analysis">Data Analysis</option>
+                            <option value="Coding">Coding</option>
+                            <option value="Writing">Writing</option>
+                            <option value="Design">Design</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle">
+                        <button class="btn btn--outline btn-small" onclick="toggleFavoritesOnly()" id="favorites-toggle">Show Favorites</button>
+                    </div>
+                </div>
                 
                 <div id="toolsContainer" class="tools-container">
                     <!-- Tools will be populated by JavaScript -->
@@ -141,20 +162,20 @@
             </div>
         </section>
 
-        <!-- Prompt Checker Section -->
+        <!-- Enhanced Prompt Checker Section -->
         <section id="checker" class="section hidden">
             <div class="container">
-                <h1>Prompt Checker</h1>
-                <p>Analyze and improve your prompts with detailed quality assessment and improvement suggestions</p>
+                <h1>Intelligent Prompt Checker</h1>
+                <p>Analyze prompts with detailed scoring and get automatic improvements for low-quality prompts</p>
                 
                 <div class="checker-container">
                     <div class="card">
                         <div class="form-group">
-                            <label for="checkerInput" class="form-label">Enter your prompt for analysis</label>
+                            <label for="checkerInput" class="form-label">Enter your prompt for detailed analysis</label>
                             <textarea 
                                 id="checkerInput" 
                                 class="form-control" 
-                                placeholder="Paste your AI prompt here for detailed analysis and improvement suggestions..."
+                                placeholder="Paste your AI prompt here for comprehensive analysis and improvement suggestions..."
                                 rows="6"
                             ></textarea>
                         </div>
@@ -164,48 +185,61 @@
                     <div id="checkerResults" class="card results-card hidden">
                         <div class="results-header">
                             <h3>Analysis Results</h3>
-                            <div id="overall-score" class="status"></div>
+                            <div class="results-scores">
+                                <div id="overall-score" class="status"></div>
+                                <button id="auto-fix-btn" class="btn btn--secondary hidden">Fix This Prompt</button>
+                            </div>
                         </div>
                         <div id="results-content" class="results-content">
                             <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Auto-Fix Results -->
+                    <div id="fixResults" class="card comparison-card hidden">
+                        <h3>Improved Version</h3>
+                        <div class="prompt-comparison">
+                            <div class="comparison-section">
+                                <h4>Original Prompt</h4>
+                                <textarea id="original-prompt-display" class="form-control" readonly rows="4"></textarea>
+                                <button id="copy-original-btn" class="btn btn--outline btn-small">Copy Original</button>
+                            </div>
+                            <div class="comparison-section">
+                                <h4>Enhanced Prompt</h4>
+                                <textarea id="fixed-prompt-display" class="form-control" readonly rows="4"></textarea>
+                                <button id="copy-fixed-btn" class="btn btn--primary btn-small">Copy Enhanced</button>
+                            </div>
+                        </div>
+                        <div class="improvements-explanation" id="improvements-explanation">
+                            <!-- Improvements will be listed here -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Prompt Generator Section -->
+        <!-- Enhanced Prompt Generator Section -->
         <section id="generator" class="section hidden">
             <div class="container">
-                <h1>Prompt Generator</h1>
-                <p>Generate optimized, purpose-specific prompts with advanced parameters and image analysis</p>
+                <h1>Advanced Prompt Generator</h1>
+                <p>Generate detailed, purpose-specific prompts with model optimization and live preview</p>
                 
                 <div class="generator-container">
-                    <!-- Image Upload Section -->
-                    <div class="card">
-                        <h3>Image to Prompt</h3>
-                        <div class="upload-section">
-                            <input type="file" id="imageUpload" accept="image/*" class="file-input" />
-                            <label for="imageUpload" class="btn btn--secondary upload-btn">Upload Image</label>
-                            <div id="imagePreview" class="image-preview hidden">
-                                <img id="previewImg" src="" alt="Uploaded image" />
-                                <button id="removeImage" class="btn btn--outline btn-small">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Manual Prompt Generation -->
                     <div class="card">
-                        <h3>Manual Prompt Generation</h3>
+                        <h3>Prompt Configuration</h3>
                         
                         <div class="form-group">
-                            <label for="userInput" class="form-label">Basic Prompt</label>
+                            <label for="userInput" class="form-label">Basic Description</label>
                             <textarea 
                                 id="userInput" 
                                 class="form-control" 
                                 placeholder="Describe what you want the AI to do..."
-                                rows="4"
+                                rows="3"
                             ></textarea>
+                            <div class="char-counter">
+                                <span id="char-count">0</span>/500 characters
+                            </div>
                         </div>
                         
                         <div class="form-row">
@@ -237,36 +271,49 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="persona" class="form-label">Persona</label>
+                                <label for="persona" class="form-label">Expertise Level</label>
                                 <select id="persona" class="form-control">
-                                    <option value="Expert">Expert</option>
-                                    <option value="Beginner">Beginner</option>
-                                    <option value="Professional">Professional</option>
-                                    <option value="Creative">Creative</option>
-                                    <option value="Technical">Technical</option>
+                                    <option value="Expert">Expert Professional</option>
+                                    <option value="Senior">Senior Specialist</option>
+                                    <option value="Experienced">Experienced Practitioner</option>
+                                    <option value="Intermediate">Intermediate Level</option>
+                                    <option value="Beginner">Beginner Friendly</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="tone" class="form-label">Tone</label>
+                                <label for="tone" class="form-label">Communication Style</label>
                                 <select id="tone" class="form-control">
                                     <option value="Professional">Professional</option>
-                                    <option value="Casual">Casual</option>
-                                    <option value="Technical">Technical</option>
-                                    <option value="Creative">Creative</option>
-                                    <option value="Formal">Formal</option>
+                                    <option value="Technical">Technical & Detailed</option>
+                                    <option value="Creative">Creative & Innovative</option>
+                                    <option value="Analytical">Analytical & Data-Driven</option>
+                                    <option value="Conversational">Conversational & Friendly</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="format" class="form-label">Output Format</label>
+                            <label for="format" class="form-label">Output Structure</label>
                             <select id="format" class="form-control">
-                                <option value="Paragraph">Paragraph</option>
+                                <option value="Structured Report">Structured Report</option>
+                                <option value="Step-by-Step Guide">Step-by-Step Guide</option>
                                 <option value="Bullet Points">Bullet Points</option>
-                                <option value="Step-by-Step">Step-by-Step</option>
-                                <option value="Table">Table</option>
-                                <option value="JSON">JSON</option>
+                                <option value="Table Format">Table Format</option>
+                                <option value="JSON Output">JSON Output</option>
+                                <option value="Executive Summary">Executive Summary</option>
                             </select>
+                        </div>
+                        
+                        <!-- Live Preview -->
+                        <div class="preview-container">
+                            <h4>Live Preview</h4>
+                            <div id="live-preview" class="preview-box">
+                                <p>Configure your prompt above to see a live preview...</p>
+                            </div>
+                            <div class="preview-stats">
+                                <span class="stat-item">Length: <span id="preview-length">0</span> words</span>
+                                <span class="stat-item">Estimated Quality: <span id="preview-quality">-</span></span>
+                            </div>
                         </div>
                         
                         <button id="generate-btn" class="btn btn--primary btn--full-width">Generate Enhanced Prompt</button>
@@ -276,15 +323,102 @@
                     <div id="generated-section" class="card output-card hidden">
                         <div class="output-header">
                             <h3>Generated Prompt</h3>
-                            <button id="copy-generated-btn" class="btn btn--secondary">Copy to Clipboard</button>
+                            <div class="output-actions">
+                                <button id="save-prompt-btn" class="btn btn--outline">Save to Favorites</button>
+                                <button id="copy-generated-btn" class="btn btn--primary">Copy to Clipboard</button>
+                            </div>
                         </div>
-                        <textarea id="promptOut" class="form-control generated-prompt" readonly rows="8"></textarea>
+                        <textarea id="promptOut" class="form-control generated-prompt" readonly rows="10"></textarea>
+                        <div class="prompt-analysis">
+                            <div class="analysis-item">
+                                <span class="label">Estimated Length:</span>
+                                <span id="output-length">-</span> words
+                            </div>
+                            <div class="analysis-item">
+                                <span class="label">Optimization Score:</span>
+                                <span id="optimization-score" class="status">-</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="label">Model Compatibility:</span>
+                                <span id="model-compatibility">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saved Prompts -->
+                    <div class="card saved-prompts-card">
+                        <div class="card-header">
+                            <h3>Saved Prompts</h3>
+                            <button id="clear-saved-btn" class="btn btn--outline btn-small">Clear All</button>
+                        </div>
+                        <div id="saved-prompts-list" class="saved-prompts-list">
+                            <p class="empty-state">No saved prompts yet. Generate and save prompts to see them here.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
+
+    <!-- Add Custom Tool Modal -->
+    <div id="addToolModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="hideAddToolModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Custom AI Tool</h3>
+                <button class="modal-close" onclick="hideAddToolModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tool-name" class="form-label">Tool Name *</label>
+                    <input type="text" id="tool-name" class="form-control" placeholder="e.g., My Custom AI Tool" required>
+                </div>
+                <div class="form-group">
+                    <label for="tool-description" class="form-label">Description *</label>
+                    <textarea id="tool-description" class="form-control" rows="3" placeholder="Brief description of what this tool does..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tool-url" class="form-label">Website URL *</label>
+                    <input type="url" id="tool-url" class="form-control" placeholder="https://example.com" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tool-category" class="form-label">Category *</label>
+                        <select id="tool-category" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="Conversational AI">Conversational AI</option>
+                            <option value="Image Generation">Image Generation</option>
+                            <option value="Video Generation">Video Generation</option>
+                            <option value="Data Analysis">Data Analysis</option>
+                            <option value="Coding">Coding</option>
+                            <option value="Writing">Writing</option>
+                            <option value="Design">Design</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tool-rating" class="form-label">Rating (1-5)</label>
+                        <select id="tool-rating" class="form-control">
+                            <option value="5">5 - Excellent</option>
+                            <option value="4" selected>4 - Very Good</option>
+                            <option value="3">3 - Good</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="1">1 - Poor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tool-tags" class="form-label">Tags (comma-separated)</label>
+                    <input type="text" id="tool-tags" class="form-control" placeholder="e.g., ai, text, creative, analysis">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" onclick="hideAddToolModal()">Cancel</button>
+                <button class="btn btn--primary" onclick="saveCustomTool()">Add Tool</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Notification Container -->
     <div id="notification-container"></div>
