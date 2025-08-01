@@ -49,6 +49,32 @@ const defaultAITools = [
   {"id": 25, "name": "Brandwatch", "category": "Marketing", "description": "AI-powered social media monitoring and analytics", "url": "https://brandwatch.com", "rating": 4.3, "tags": ["social", "monitoring", "analytics", "insights"], "isCustom": false, "dateAdded": "2025-01-27"}
 ];
 
+// UNDERRATED AI TOOLS - Free, No Signup Required
+const underratedAITools = [
+  // Image Generation
+  {"id": 101, "name": "Raphael AI", "category": "Image Generation", "description": "Free unlimited AI art generation with no signup required", "url": "https://raphaelai.org", "rating": 4.7, "tags": ["free", "no-signup", "unlimited", "art"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 102, "name": "AIGAZOU", "category": "Image Generation", "description": "Japanese AI image generator with multilingual support", "url": "https://muryou-aigazou.com/en", "rating": 4.5, "tags": ["free", "multilingual", "japanese", "image"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 103, "name": "Magic Hour Image Gen", "category": "Image Generation", "description": "Fast AI image generation with various styles", "url": "https://magichour.ai/products/ai-image-generator", "rating": 4.3, "tags": ["fast", "styles", "generator", "creative"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 104, "name": "Nuelink Image Gen", "category": "Image Generation", "description": "Simple AI image generator for social media", "url": "https://nuelink.com/tools/ai-image-generator", "rating": 4.2, "tags": ["social", "simple", "marketing", "images"], "isCustom": false, "dateAdded": "2025-01-27"},
+
+  // Conversational AI
+  {"id": 105, "name": "DuckDuckGo AI Chat", "category": "Conversational AI", "description": "Private, anonymous AI chat with no tracking", "url": "https://duck.ai", "rating": 4.6, "tags": ["private", "anonymous", "no-tracking", "chat"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 106, "name": "Anon ChatGPT", "category": "Conversational AI", "description": "Anonymous access to ChatGPT without registration", "url": "https://deepgram.com/ai-apps/anonchatgpt", "rating": 4.5, "tags": ["anonymous", "free", "gpt", "no-signup"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 107, "name": "HotBot ChatGPT", "category": "Conversational AI", "description": "Free ChatGPT access through HotBot search", "url": "https://www.hotbot.com/free-chatgpt", "rating": 4.4, "tags": ["free", "search", "chatgpt", "accessible"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 108, "name": "EaseMate AI", "category": "Conversational AI", "description": "Free AI assistant for productivity and help", "url": "https://www.easemate.ai/chatgpt-free", "rating": 4.3, "tags": ["productivity", "assistant", "free", "help"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 109, "name": "QuillBot AI Chat", "category": "Conversational AI", "description": "AI chat with writing and paraphrasing focus", "url": "https://quillbot.com/ai-chat", "rating": 4.2, "tags": ["writing", "paraphrasing", "education", "chat"], "isCustom": false, "dateAdded": "2025-01-27"},
+
+  // Utility/Writing
+  {"id": 110, "name": "TinyWow Suite", "category": "Utility Suite", "description": "Complete suite of AI tools for PDFs, images, and writing", "url": "https://tinywow.com/tools/write", "rating": 4.4, "tags": ["pdf", "images", "writing", "suite"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 111, "name": "Toolbaz AI Writer", "category": "Writing", "description": "Free AI text generator with multiple templates", "url": "https://toolbaz.com/writer/ai-text-generator", "rating": 4.3, "tags": ["templates", "generator", "free", "writing"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 112, "name": "GenApe", "category": "Writing", "description": "AI writing assistant with creative tools", "url": "https://app.genape.ai", "rating": 4.1, "tags": ["creative", "assistant", "tools", "writing"], "isCustom": false, "dateAdded": "2025-01-27"},
+
+  // Specialized
+  {"id": 113, "name": "Earkick", "category": "Mental Health", "description": "AI mental health companion for emotional support", "url": "https://earkick.com", "rating": 4.4, "tags": ["mental-health", "emotional", "support", "wellness"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 114, "name": "Brave Leo", "category": "Conversational AI", "description": "Built-in AI assistant in Brave browser", "url": "https://brave.com/leo/", "rating": 4.2, "tags": ["browser", "built-in", "privacy", "assistant"], "isCustom": false, "dateAdded": "2025-01-27"},
+  {"id": 115, "name": "NoteGPT AI Detector", "category": "Content Detection", "description": "Detect AI-generated content with high accuracy", "url": "https://notegpt.io/ai-detector", "rating": 4.0, "tags": ["detection", "content", "accuracy", "analysis"], "isCustom": false, "dateAdded": "2025-01-27"}
+];
+
 // Enhanced Prompt Library
 const promptLibrary = {
   projectManagement: [
@@ -403,7 +429,7 @@ function copyPrompt(promptText, button) {
   
   const originalText = button.textContent;
   button.textContent = 'Copied!';
-  button.style.background = '#10b981';
+  button.style.background = '#00c851';
   
   setTimeout(() => {
     button.textContent = originalText;
@@ -418,73 +444,11 @@ function populateAITools() {
   console.log('🔧 Populating AI tools...');
   
   try {
-    const toolsContainer = document.getElementById('toolsContainer');
-    if (!toolsContainer) {
-      console.log('⚠️ Tools container not found');
-      return;
-    }
+    // Populate Underrated Tools
+    populateUnderratedTools();
     
-    const allTools = [...defaultAITools, ...customTools];
-    let filteredTools = allTools;
-    
-    // Apply filters
-    const searchInput = document.getElementById('tools-search');
-    const categoryFilter = document.getElementById('category-filter');
-    
-    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-    const categoryFilterValue = categoryFilter ? categoryFilter.value : '';
-    
-    if (searchTerm) {
-      filteredTools = filteredTools.filter(tool => 
-        tool.name.toLowerCase().includes(searchTerm) ||
-        tool.description.toLowerCase().includes(searchTerm) ||
-        tool.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-      );
-    }
-    
-    if (categoryFilterValue) {
-      filteredTools = filteredTools.filter(tool => tool.category === categoryFilterValue);
-    }
-    
-    if (showingFavoritesOnly) {
-      filteredTools = filteredTools.filter(tool => favoriteTools.includes(tool.id));
-    }
-    
-    // Group by category
-    const categories = {};
-    filteredTools.forEach(tool => {
-      if (!categories[tool.category]) {
-        categories[tool.category] = [];
-      }
-      categories[tool.category].push(tool);
-    });
-    
-    toolsContainer.innerHTML = '';
-    
-    if (Object.keys(categories).length === 0) {
-      toolsContainer.innerHTML = '<p class="empty-state">No tools found matching your criteria.</p>';
-      return;
-    }
-    
-    Object.entries(categories).forEach(([category, tools]) => {
-      const categorySection = document.createElement('div');
-      categorySection.className = 'tools-category';
-      
-      const categoryTitle = document.createElement('h3');
-      categoryTitle.innerHTML = `${category} <span class="category-count">(${tools.length})</span>`;
-      categorySection.appendChild(categoryTitle);
-      
-      const toolsGrid = document.createElement('div');
-      toolsGrid.className = 'tools-grid';
-      
-      tools.forEach(tool => {
-        const toolCard = createToolCard(tool);
-        toolsGrid.appendChild(toolCard);
-      });
-      
-      categorySection.appendChild(toolsGrid);
-      toolsContainer.appendChild(categorySection);
-    });
+    // Populate Main Tools
+    populateMainTools();
     
     console.log('✅ AI tools populated successfully');
   } catch (error) {
@@ -492,12 +456,149 @@ function populateAITools() {
   }
 }
 
-function createToolCard(tool) {
+function populateUnderratedTools() {
+  const underratedContainer = document.getElementById('underratedToolsContainer');
+  if (!underratedContainer) return;
+  
+  // Apply filters to underrated tools
+  let filteredTools = [...underratedAITools];
+  
+  const searchInput = document.getElementById('tools-search');
+  const categoryFilter = document.getElementById('category-filter');
+  
+  const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+  const categoryFilterValue = categoryFilter ? categoryFilter.value : '';
+  
+  if (searchTerm) {
+    filteredTools = filteredTools.filter(tool => 
+      tool.name.toLowerCase().includes(searchTerm) ||
+      tool.description.toLowerCase().includes(searchTerm) ||
+      tool.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+    );
+  }
+  
+  if (categoryFilterValue) {
+    filteredTools = filteredTools.filter(tool => tool.category === categoryFilterValue);
+  }
+  
+  if (showingFavoritesOnly) {
+    filteredTools = filteredTools.filter(tool => favoriteTools.includes(tool.id));
+  }
+  
+  // Group by category
+  const categories = {};
+  filteredTools.forEach(tool => {
+    if (!categories[tool.category]) {
+      categories[tool.category] = [];
+    }
+    categories[tool.category].push(tool);
+  });
+  
+  underratedContainer.innerHTML = '';
+  
+  if (Object.keys(categories).length === 0) {
+    underratedContainer.innerHTML = '<p class="empty-state">No underrated tools found matching your criteria.</p>';
+    return;
+  }
+  
+  Object.entries(categories).forEach(([category, tools]) => {
+    const categorySection = document.createElement('div');
+    categorySection.className = 'tools-category';
+    
+    const categoryTitle = document.createElement('h3');
+    categoryTitle.innerHTML = `${category} <span class="category-count">(${tools.length})</span>`;
+    categorySection.appendChild(categoryTitle);
+    
+    const toolsGrid = document.createElement('div');
+    toolsGrid.className = 'tools-grid';
+    
+    tools.forEach(tool => {
+      const toolCard = createToolCard(tool, true);
+      toolsGrid.appendChild(toolCard);
+    });
+    
+    categorySection.appendChild(toolsGrid);
+    underratedContainer.appendChild(categorySection);
+  });
+}
+
+function populateMainTools() {
+  const toolsContainer = document.getElementById('toolsContainer');
+  if (!toolsContainer) return;
+  
+  const allTools = [...defaultAITools, ...customTools];
+  let filteredTools = allTools;
+  
+  // Apply filters
+  const searchInput = document.getElementById('tools-search');
+  const categoryFilter = document.getElementById('category-filter');
+  
+  const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+  const categoryFilterValue = categoryFilter ? categoryFilter.value : '';
+  
+  if (searchTerm) {
+    filteredTools = filteredTools.filter(tool => 
+      tool.name.toLowerCase().includes(searchTerm) ||
+      tool.description.toLowerCase().includes(searchTerm) ||
+      tool.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+    );
+  }
+  
+  if (categoryFilterValue) {
+    filteredTools = filteredTools.filter(tool => tool.category === categoryFilterValue);
+  }
+  
+  if (showingFavoritesOnly) {
+    filteredTools = filteredTools.filter(tool => favoriteTools.includes(tool.id));
+  }
+  
+  // Group by category
+  const categories = {};
+  filteredTools.forEach(tool => {
+    if (!categories[tool.category]) {
+      categories[tool.category] = [];
+    }
+    categories[tool.category].push(tool);
+  });
+  
+  toolsContainer.innerHTML = '';
+  
+  if (Object.keys(categories).length === 0) {
+    toolsContainer.innerHTML = '<p class="empty-state">No tools found matching your criteria.</p>';
+    return;
+  }
+  
+  Object.entries(categories).forEach(([category, tools]) => {
+    const categorySection = document.createElement('div');
+    categorySection.className = 'tools-category';
+    
+    const categoryTitle = document.createElement('h3');
+    categoryTitle.innerHTML = `${category} <span class="category-count">(${tools.length})</span>`;
+    categorySection.appendChild(categoryTitle);
+    
+    const toolsGrid = document.createElement('div');
+    toolsGrid.className = 'tools-grid';
+    
+    tools.forEach(tool => {
+      const toolCard = createToolCard(tool, false);
+      toolsGrid.appendChild(toolCard);
+    });
+    
+    categorySection.appendChild(toolsGrid);
+    toolsContainer.appendChild(categorySection);
+  });
+}
+
+function createToolCard(tool, isUnderrated = false) {
   const isNew = isToolNew(tool.dateAdded);
   const isFavorite = favoriteTools.includes(tool.id);
   
   const toolCard = document.createElement('div');
   toolCard.className = 'tool-card';
+  
+  const badgeHtml = isUnderrated ? '<span class="new-badge">Free & No Signup</span>' : 
+                   (isNew ? '<span class="new-badge">New</span>' : '') +
+                   (tool.isCustom ? '<span class="custom-badge">Custom</span>' : '');
   
   toolCard.innerHTML = `
     <h4>
@@ -515,8 +616,7 @@ function createToolCard(tool) {
         <span class="rating-text">${tool.rating}★</span>
       </div>
       <div>
-        ${isNew ? '<span class="new-badge">New</span>' : ''}
-        ${tool.isCustom ? '<span class="custom-badge">Custom</span>' : ''}
+        ${badgeHtml}
       </div>
     </div>
     <div class="tool-tags">
@@ -865,7 +965,7 @@ function analyzePrompt(text) {
   else if (score >= 2) grade = 'C';
   else if (score >= 0) grade = 'D';
   
-  return { score, grade, feedback, wordCount, needsAutoFix: grade <= 'C' };
+  return { score, grade, feedback, wordCount, needsAutoFix: ['C', 'D', 'F'].includes(grade) };
 }
 
 function displayAnalysisResults(analysis, originalPrompt) {
@@ -881,7 +981,7 @@ function displayAnalysisResults(analysis, originalPrompt) {
   
   // Show/hide auto-fix button
   if (autoFixBtn) {
-    if (analysis.grade === 'C' || analysis.grade === 'D' || analysis.grade === 'F') {
+    if (analysis.needsAutoFix) {
       autoFixBtn.classList.remove('hidden');
     } else {
       autoFixBtn.classList.add('hidden');
